@@ -1,0 +1,38 @@
+{
+    "name": "phos",
+    "version": "0.0.1",
+    "description": "An Open Source alternative to softwares like Proclaim, OpenLP, & Pro-Presenter",
+    "author": "Trey Foster <treybfoster@gmail.com@gmail.com>",
+    "main": "main.js",
+    "scripts": {
+        "dev": "concurrently \"yarn watch\" \"yarn electron\"",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run development -- --watch",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "electron": "electron main.js"
+    },
+    "keywords": [
+        "electron",
+        "react",
+        "template"
+    ],
+    "dependencies": {
+        "@material-ui/core": "^4.6.0",
+        "@material-ui/icons": "^4.5.1",
+        "react": "^16.11.0",
+        "react-dom": "^16.11.0"
+    },
+    "devDependencies": {
+        "@babel/preset-react": "^7.7.0",
+        "concurrently": "^5.0.0",
+        "cross-env": "^6.0.3",
+        "electron": "^7.1.1",
+        "laravel-mix": "^5.0.0",
+        "node-sass": "^4.13.0",
+        "resolve-url-loader": "^3.1.1",
+        "sass-loader": "^8.0.0"
+    },
+    "license": "MIT"
+}
