@@ -1,31 +1,26 @@
 import React, { Component } from "react";
 
-import {
-    AppBar,
-    Toolbar,
-    IconButton,
-    Typography,
-    Button
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import { AppBar, Toolbar } from "@material-ui/core";
+
+import { NavItem } from "./NavItem";
+import NewPresentationModal from "./NewPresentationModal";
 
 class Navbar extends Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return (
-            <AppBar position="static">
-                <Toolbar variant="dense">
-                    <IconButton edge="start" color="inherit" aria-label="menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6">Phos</Typography>
-                </Toolbar>
-            </AppBar>
-        );
-    }
+  render() {
+    return (
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          <NavItem label="File">
+            <NewPresentationModal />
+          </NavItem>
+        </Toolbar>
+      </AppBar>
+    );
+  }
 }
 
-export { Navbar };
+export default Navbar;
