@@ -7,8 +7,6 @@ import dayjs from "dayjs";
 
 import {
   ListItem,
-  ListItemSecondaryAction,
-  Icon,
   ListItemText,
   Dialog,
   DialogTitle,
@@ -17,6 +15,8 @@ import {
   DialogContent,
   TextField
 } from "@material-ui/core";
+
+import OpenInNew from "@material-ui/icons/OpenInNew";
 
 import { KeyboardDatePicker } from "@material-ui/pickers";
 
@@ -35,11 +35,9 @@ const NewPresentationModal = props => {
 
   return (
     <React.Fragment>
-      <ListItem button onClick={() => setOpen(true)}>
-        <ListItemText primary="New" />
-        <ListItemSecondaryAction>
-          <Icon>open_in_new</Icon>
-        </ListItemSecondaryAction>
+      <ListItem button dense onClick={() => setOpen(true)}>
+        <ListItemText primary="New " />
+        <OpenInNew />
       </ListItem>
       <Dialog
         maxWidth="sm"

@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import PresentationItems from "./PresentationItems";
+import EditPanel from "./EditPanel";
 
 const Content = props => {
   return (
@@ -9,7 +10,7 @@ const Content = props => {
         <PresentationItems />
       </Grid>
       <Grid item xs={9}>
-        Content
+        <EditPanel />
       </Grid>
     </Grid>
   );

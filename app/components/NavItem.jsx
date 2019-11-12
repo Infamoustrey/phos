@@ -26,4 +26,4 @@ const NavItem = props => {
   );
 };
 
-export { NavItem };
+export default NavItem;

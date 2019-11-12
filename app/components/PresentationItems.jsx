@@ -23,7 +23,7 @@ const PresentationItems = props => {
   return (
     <Grid container>
       <Grid item xs={12} style={{ padding: "1rem" }}>
-        <TextField fullWidth variant="outlined" label="Title" />
+        <TextField fullWidth margin="dense" variant="outlined" label="Title" />
         <List>
           <ListItem button dense onClick={() => setOpen(!open)}>
             <ListItemText primary="Pre-Service Loop" />

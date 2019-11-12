@@ -1,26 +1,33 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-import { AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, Toolbar, FormControlLabel, Switch } from "@material-ui/core";
 
-import { NavItem } from "./NavItem";
+import NavItem from "./NavItem";
 import NewPresentationModal from "./NewPresentationModal";
 
-class Navbar extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Navbar = props => {
+  const [presentMode, setPresentMode] = useState(false);
 
-  render() {
-    return (
-      <AppBar position="static">
-        <Toolbar variant="dense">
-          <NavItem label="File">
-            <NewPresentationModal />
-          </NavItem>
-        </Toolbar>
-      </AppBar>
-    );
-  }
-}
+  return (
+    <AppBar position="static">
+      <Toolbar variant="dense">
+        <NavItem label="File">
+          <NewPresentationModal />
+        </NavItem>
+        <div style={{ flex: 1 }}></div>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={presentMode}
+              onChange={() => setPresentMode(!presentMode)}
+              value="checkedA"
+            />
+          }
+          label="Present Mode"
+        />
+      </Toolbar>
+    </AppBar>
+  );
+};
 
 export default Navbar;
