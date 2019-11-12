@@ -3,6 +3,7 @@ import { Grid } from "@material-ui/core";
 import EditModeToggle from "./EditModeToggle";
 import SlidePreviewSizeSlider from "./SlidePreviewSizeSlider";
 import SlideCardList from "./SlideCardList";
+import PreviewSlide from "./PreviewSlide";
 
 const EditPanel = props => {
   return (
@@ -21,7 +22,7 @@ const EditPanel = props => {
             <SlideCardList />
           </Grid>
           <Grid item xs={4}>
-            {" "}
+            <PreviewSlide />
           </Grid>
         </Grid>
       </Grid>

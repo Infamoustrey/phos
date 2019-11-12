@@ -26,10 +26,10 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <ReduxProvider store={store}>
-            <React.Fragment>
+            <div style={{ height: "100vh" }}>
               <Navbar />
               <Content />
-            </React.Fragment>
+            </div>
           </ReduxProvider>
         </MuiPickersUtilsProvider>
       </ThemeProvider>

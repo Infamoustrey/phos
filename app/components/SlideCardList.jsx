@@ -23,8 +23,8 @@ const SlideCardList = props => {
       elevation={3}
       style={{
         padding: "1rem",
-        width: "100%",
-        height: 500,
+        minHeight: 500,
+        maxHeight: "72vh",
         overflowY: "scroll"
       }}
     >

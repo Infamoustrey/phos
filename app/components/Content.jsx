@@ -6,10 +6,10 @@ import EditPanel from "./EditPanel";
 const Content = props => {
   return (
     <Grid container>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <PresentationItems />
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs={10}>
         <EditPanel />
       </Grid>
     </Grid>

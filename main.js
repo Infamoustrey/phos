@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Menu } = require("electron");
 
 const path = require("path");
 
@@ -19,6 +19,8 @@ function createWindow() {
     width: 1280,
     height: 720
   });
+
+  // Menu.setApplicationMenu(null);
 
   mainWindow.loadURL(path.join("file://", __dirname, "/app/index.html"));
 
