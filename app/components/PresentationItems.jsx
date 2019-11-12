@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { connect } from "react-redux";
+
 import {
   TextField,
   Grid,
@@ -7,23 +9,33 @@ import {
   ListItem,
   ListItemText,
   ListItemAvatar,
-  ListItemSecondaryAction,
   Avatar,
   Divider,
-  IconButton,
-  Collapse
+  Collapse,
+  Typography
 } from "@material-ui/core";
 
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 
 const PresentationItems = props => {
+  const { presentation } = props;
+
   const [open, setOpen] = useState(false);
 
   return (
     <Grid container>
       <Grid item xs={12} style={{ padding: "1rem" }}>
-        <TextField fullWidth margin="dense" variant="outlined" label="Title" />
+        <Typography variant="subtitle1">
+          Date: {presentation.date || ""}
+        </Typography>
+        <TextField
+          value={presentation.title || ""}
+          fullWidth
+          margin="dense"
+          variant="outlined"
+          label="Title"
+        />
         <List>
           <ListItem button dense onClick={() => setOpen(!open)}>
             <ListItemText primary="Pre-Service Loop" />
@@ -47,4 +59,7 @@ const PresentationItems = props => {
   );
 };
 
-export default PresentationItems;
+const mapStateToProps = state => ({ presentation: state.Presentation });
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PresentationItems);
