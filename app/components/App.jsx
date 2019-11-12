@@ -11,6 +11,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
 import Navbar from "./Navbar";
+import Content from "./Content";
 
 const theme = createMuiTheme({
   palette: {
@@ -27,7 +28,7 @@ class App extends Component {
           <ReduxProvider store={store}>
             <React.Fragment>
               <Navbar />
-              <h1>Heyo this is the apperino</h1>
+              <Content />
             </React.Fragment>
           </ReduxProvider>
         </MuiPickersUtilsProvider>

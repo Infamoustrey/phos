@@ -87,7 +87,7 @@ const NewPresentationModal = props => {
           <Button color="secondary" onClick={() => setOpen(false)}>
             Cancel
           </Button>
-          <Button onClick={() => submit()} color="primary" variant="contained">
+          <Button onClick={submit} color="primary" variant="contained">
             Submit
           </Button>
         </DialogActions>
