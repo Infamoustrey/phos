@@ -10,7 +10,11 @@ const NavSubItem = ({ item, onAction }) => {
   return (
     <ListItem button>
       <ListItemText primary={label} onClick={() => setActive(!active)} />
-      {icon && <Icon>{icon}</Icon>}
+      {icon && (
+        <Icon onClick={() => setActive(!active)} style={{ marginLeft: "2rem" }}>
+          {icon}
+        </Icon>
+      )}
       {component &&
         React.createElement(
           component,
