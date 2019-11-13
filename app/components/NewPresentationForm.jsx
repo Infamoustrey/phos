@@ -26,6 +26,10 @@ const NewPresentationForm = props => {
     setActive(false);
     onAction();
   };
+  const cancel = async () => {
+    setActive(false);
+    onAction();
+  };
 
   return (
     <Dialog
@@ -55,6 +59,7 @@ const NewPresentationForm = props => {
             <TextField
               value={title}
               onChange={e => setTitle(e.target.value)}
+              onKeyPress={e => e.key === "Enter" && submit()}
               label="Title"
               variant="outlined"
             />

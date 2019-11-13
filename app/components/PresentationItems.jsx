@@ -1,27 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { connect } from "react-redux";
 
-import {
-  TextField,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemAvatar,
-  Avatar,
-  Divider,
-  Collapse,
-  Typography
-} from "@material-ui/core";
+import { TextField, Grid, List, Typography } from "@material-ui/core";
 
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
+import Section from "./Section";
 
 const PresentationItems = props => {
   const { presentation, sections = [] } = props;
-
-  const [open, setOpen] = useState(false);
 
   return (
     <Grid container>
@@ -37,25 +23,8 @@ const PresentationItems = props => {
           label="Title"
         />
         <List>
-          {sections.map(section => (
-            <React.Fragment>
-              <ListItem button dense onClick={() => setOpen(!open)}>
-                <ListItemText primary={section.title} />
-                {open ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
-              <Collapse in={open} timeout="auto" unmountOnExit>
-                <ListItem button dense>
-                  <ListItemAvatar>
-                    <Avatar
-                      alt="item"
-                      src="https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-                    />
-                  </ListItemAvatar>
-                  <ListItemText primary="Sermon Title" />
-                </ListItem>
-              </Collapse>
-              <Divider component="li" />
-            </React.Fragment>
+          {sections.map((section, i) => (
+            <Section key={i} section={section} />
           ))}
         </List>
       </Grid>

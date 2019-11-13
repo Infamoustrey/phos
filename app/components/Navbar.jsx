@@ -7,6 +7,7 @@ import { AppBar, Toolbar, FormControlLabel, Switch } from "@material-ui/core";
 import NavItem from "./NavItem";
 import NewPresentationForm from "./NewPresentationForm";
 import NewSectionForm from "./NewSectionForm";
+import NewContentItem from "./NewContentItem";
 
 const Navbar = props => {
   const { presentation } = props;
@@ -29,7 +30,7 @@ const Navbar = props => {
       items: [
         { label: "Song", component: NewPresentationForm, icon: "music_note" },
         { label: "Bible", component: NewPresentationForm, icon: "book" },
-        { label: "Content", component: NewPresentationForm, icon: "dashboard" },
+        { label: "Content", component: NewContentItem, icon: "dashboard" },
         {
           label: "Section",
           component: NewSectionForm,
@@ -60,17 +61,21 @@ const Navbar = props => {
         {navItems.map((item, i) => (
           <NavItem key={i} label={item.label} items={item.items} />
         ))}
-        {/* <div style={{ flex: 1 }}></div>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={presentMode}
-              onChange={() => setPresentMode(!presentMode)}
-              value="checkedA"
+        {presentation._id && (
+          <React.Fragment>
+            <div style={{ flex: 1 }}></div>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={presentMode}
+                  onChange={() => setPresentMode(!presentMode)}
+                  value="checkedA"
+                />
+              }
+              label="Present Mode"
             />
-          }
-          label="Present Mode"
-        /> */}
+          </React.Fragment>
+        )}
       </Toolbar>
     </AppBar>
   );
