@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { TextField, Grid, List, Typography } from "@material-ui/core";
 
-import Section from "./Section";
+import SectionList from "./SectionList";
 
 const PresentationItems = props => {
   const { presentation, sections = [] } = props;
@@ -24,7 +24,7 @@ const PresentationItems = props => {
         />
         <List>
           {sections.map((section, i) => (
-            <Section key={i} section={section} />
+            <SectionList key={i} section={section} />
           ))}
         </List>
       </Grid>
