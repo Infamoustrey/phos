@@ -1,10 +1,17 @@
 import React from "react";
+
+import { connect } from "react-redux";
+
 import { Grid } from "@material-ui/core";
+
 import PresentationItems from "./PresentationItems";
 import EditPanel from "./EditPanel";
+import NoPresentationLoaded from "./NoPresentationLoaded";
 
-const Content = props => {
-  return (
+const Content = ({ presentation }) => {
+  return !presentation._id ? (
+    <NoPresentationLoaded />
+  ) : (
     <Grid container>
       <Grid item xs={2}>
         <PresentationItems />
@@ -16,4 +23,7 @@ const Content = props => {
   );
 };
 
-export default Content;
+const mapStateToProps = state => ({ presentation: state.Presentation });
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

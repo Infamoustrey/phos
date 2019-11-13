@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { connect } from "react-redux";
+
 import { AppBar, Toolbar, FormControlLabel, Switch } from "@material-ui/core";
 
 import NavItem from "./NavItem";
@@ -7,14 +9,22 @@ import NewPresentationForm from "./NewPresentationForm";
 import NewSectionForm from "./NewSectionForm";
 
 const Navbar = props => {
+  const { presentation } = props;
+
   const [presentMode, setPresentMode] = useState(false);
 
-  const navItems = [
+  let navItems = [
     {
       label: "File",
-      items: [{ label: "New", component: NewPresentationForm }]
-    },
-    {
+      items: [
+        { label: "New", component: NewPresentationForm },
+        { label: "Open" }
+      ]
+    }
+  ];
+
+  if (presentation && presentation._id) {
+    navItems.push({
       label: "Add Item",
       items: [
         { label: "Song", component: NewPresentationForm, icon: "music_note" },
@@ -41,8 +51,8 @@ const Navbar = props => {
           icon: "collections"
         }
       ]
-    }
-  ];
+    });
+  }
 
   return (
     <AppBar position="static">
@@ -50,7 +60,7 @@ const Navbar = props => {
         {navItems.map((item, i) => (
           <NavItem key={i} label={item.label} items={item.items} />
         ))}
-        <div style={{ flex: 1 }}></div>
+        {/* <div style={{ flex: 1 }}></div>
         <FormControlLabel
           control={
             <Switch
@@ -60,10 +70,13 @@ const Navbar = props => {
             />
           }
           label="Present Mode"
-        />
+        /> */}
       </Toolbar>
     </AppBar>
   );
 };
 
-export default Navbar;
+const mapStateToProps = state => ({ presentation: state.Presentation });
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

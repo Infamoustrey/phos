@@ -28,7 +28,12 @@ const NewPresentationForm = props => {
   };
 
   return (
-    <Dialog open={active} onClose={() => setActive(false)}>
+    <Dialog
+      fullWidth
+      maxWidth="sm"
+      open={active}
+      onClose={() => setActive(false)}
+    >
       <DialogTitle>Create a Presentation</DialogTitle>
       <DialogContent>
         <div
@@ -78,7 +83,7 @@ const NewPresentationForm = props => {
   );
 };
 
-const mapStateToProps = state => {};
+const mapStateToProps = state => ({});
 
 const mapDispatchtoProps = { ...Presentations };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { Button, Menu, ListItem, ListItemText, Icon } from "@material-ui/core";
 
@@ -8,20 +8,18 @@ const NavSubItem = ({ item, onAction }) => {
   const [active, setActive] = useState(false);
 
   return (
-    <ListItem button>
-      <ListItemText primary={label} onClick={() => setActive(!active)} />
-      {icon && (
-        <Icon onClick={() => setActive(!active)} style={{ marginLeft: "2rem" }}>
-          {icon}
-        </Icon>
-      )}
+    <React.Fragment>
+      <ListItem onClick={() => setActive(!active)} button>
+        <ListItemText primary={label} />
+        {icon && <Icon style={{ marginLeft: "2rem" }}>{icon}</Icon>}
+      </ListItem>
       {component &&
         React.createElement(
           component,
           { active, setActive, onAction: () => onAction() },
           null
         )}
-    </ListItem>
+    </React.Fragment>
   );
 };
 
@@ -30,7 +28,7 @@ const NavItem = props => {
 
   const [open, setOpen] = useState(false);
 
-  const id = Math.round(new Date().getTime() / 1000);
+  const buttonRef = useRef(null);
 
   const action = () => {
     setOpen(false);
@@ -38,14 +36,19 @@ const NavItem = props => {
 
   return (
     <React.Fragment>
-      <Button id={id} color="inherit" onClick={() => setOpen(true)}>
+      <Button
+        ref={buttonRef}
+        onClick={() => setOpen(true)}
+        variant="text"
+        color="inherit"
+      >
         {label}
       </Button>
       <Menu
-        anchorEl={document.getElementById(id)}
-        transitionDuration={100}
+        anchorEl={buttonRef.current}
         open={open}
         onClose={() => setOpen(false)}
+        transitionDuration={100}
       >
         {items.map((item, i) => (
           <NavSubItem key={i} item={item} onAction={action} />
