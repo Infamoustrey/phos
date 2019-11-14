@@ -3,6 +3,7 @@ import { addReducer, setGlobal } from "reactn";
 import uuid from "uuid/v1";
 
 const CREATE_PRESENTATION = "CREATE_PRESENTATION";
+
 const ADD_PRESENTATION = "ADD_PRESENTATION";
 const SET_PRESENTATION = "SET_PRESENTATION";
 

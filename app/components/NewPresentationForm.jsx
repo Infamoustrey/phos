@@ -32,7 +32,7 @@ const NewPresentationForm = ({ onComplete }) => {
   };
 
   return (
-    <Dialog fullWidth maxWidth="sm" open={open} onClose={() => setOpen(false)}>
+    <Dialog fullWidth maxWidth="sm" open={open} onClose={() => cancel()}>
       <DialogTitle>Create a Presentation</DialogTitle>
       <DialogContent>
         <div

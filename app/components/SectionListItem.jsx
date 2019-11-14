@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useGlobal } from "reactn";
 
 import {
   ListItem,
@@ -11,8 +11,16 @@ import { useTheme } from "@material-ui/styles";
 const SectionListItem = ({ item }) => {
   const theme = useTheme();
 
+  const [editMode, setEditMode] = useGlobal("interface.edit-mode");
+  const [selectedItem, setSelectedItem] = useGlobal("selectedItem");
+
+  const selectItem = () => {
+    setSelectedItem(item);
+    setEditMode(true);
+  };
+
   return (
-    <ListItem button dense>
+    <ListItem button dense onClick={selectItem}>
       <ListItemAvatar>
         <img
           style={{

@@ -28,7 +28,7 @@ const MainPanel = props => {
           </Grid>
         </Grid>
         <Grid container className="full-height">
-          <Grid item xs={8} style={{ maxHeight: "100%", overflowY: "scroll" }}>
+          <Grid item xs={8} style={{ height: "100%", overflowY: "auto" }}>
             {editMode ? <EditPane /> : <SlideCardList />}
           </Grid>
           <Grid item xs={4}>

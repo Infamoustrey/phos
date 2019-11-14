@@ -5,9 +5,7 @@ import {
   Grid,
   Card,
   CardActionArea,
-  CardMedia,
-  CardContent,
-  Typography
+  CardMedia
 } from "@material-ui/core";
 
 const SlideCardList = props => {

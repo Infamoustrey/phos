@@ -39,8 +39,13 @@ const NewContentForm = props => {
     onComplete();
   };
 
+  const cancel = () => {
+    setOpen(false);
+    onComplete();
+  };
+
   return (
-    <Dialog open={open} onClose={() => setOpen(false)}>
+    <Dialog open={open} onClose={cancel}>
       <DialogTitle>Add Content Item</DialogTitle>
       <DialogContent>
         <TextField
@@ -63,10 +68,10 @@ const NewContentForm = props => {
         />
       </DialogContent>
       <DialogActions>
-        <Button color="secondary" onClick={() => cancel()}>
+        <Button color="secondary" onClick={cancel}>
           Cancel
         </Button>
-        <Button color="primary" onClick={() => submit()} variant="contained">
+        <Button color="primary" onClick={submit} variant="contained">
           Add
         </Button>
       </DialogActions>

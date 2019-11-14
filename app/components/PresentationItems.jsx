@@ -5,7 +5,7 @@ import { TextField, Grid, List, Typography } from "@material-ui/core";
 import SectionList from "./SectionList";
 
 const PresentationItems = () => {
-  const [presentation] = useGlobal("presentation");
+  const [presentation, setPresentation] = useGlobal("presentation");
   const [sections] = useGlobal("sections");
 
   return (
@@ -16,6 +16,9 @@ const PresentationItems = () => {
         </Typography>
         <TextField
           value={presentation.title || ""}
+          onChange={e =>
+            setPresentation({ ...presentation, title: e.target.value })
+          }
           fullWidth
           margin="dense"
           variant="outlined"
