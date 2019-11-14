@@ -1,13 +1,12 @@
-import React from "react";
-
-import { connect } from "react-redux";
+import React, { useGlobal } from "reactn";
 
 import { TextField, Grid, List, Typography } from "@material-ui/core";
 
 import SectionList from "./SectionList";
 
-const PresentationItems = props => {
-  const { presentation, sections = [] } = props;
+const PresentationItems = () => {
+  const [presentation] = useGlobal("presentation");
+  const [sections] = useGlobal("sections");
 
   return (
     <Grid container>
@@ -32,10 +31,4 @@ const PresentationItems = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  presentation: state.Presentation,
-  sections: state.Sections
-});
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PresentationItems);
+export default PresentationItems;

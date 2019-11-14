@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-
-import { connect } from "react-redux";
+import React, { useState, useGlobal } from "reactn";
 
 import { ListItem, ListItemText, Divider, Collapse } from "@material-ui/core";
 
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 
-const SectionList = ({ section, items }) => {
+import SectionListItem from "./SectionListItem";
+
+const SectionList = ({ section }) => {
+  const [items] = useGlobal("items");
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -28,10 +30,4 @@ const SectionList = ({ section, items }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  items: state.Items
-});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SectionList);
+export default SectionList;

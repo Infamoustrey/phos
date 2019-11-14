@@ -1,7 +1,4 @@
-import React, { Component } from "react";
-
-import { Provider as ReduxProvider } from "react-redux";
-import store from "../store";
+import React from "reactn";
 
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import deepPurple from "@material-ui/core/colors/deepPurple";
@@ -20,21 +17,17 @@ const theme = createMuiTheme({
   }
 });
 
-class App extends Component {
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <ReduxProvider store={store}>
-            <div style={{ height: "100vh" }}>
-              <Navbar />
-              <Content />
-            </div>
-          </ReduxProvider>
-        </MuiPickersUtilsProvider>
-      </ThemeProvider>
-    );
-  }
-}
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <div style={{ height: "100vh" }}>
+          <Navbar />
+          <Content />
+        </div>
+      </MuiPickersUtilsProvider>
+    </ThemeProvider>
+  );
+};
 
 export { App };

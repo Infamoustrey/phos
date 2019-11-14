@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useGlobal } from "reactn";
+
+import { Fab } from "@material-ui/core";
 
 import ViewComfyIcon from "@material-ui/icons/ViewComfy";
 import ViewCompactIcon from "@material-ui/icons/ViewCompact";
-import { Fab } from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
+import PlayIcon from "@material-ui/icons/PlayArrow";
 
 const EditModeToggle = props => {
+  const [editMode, setEditMode] = useGlobal("interface.edit-mode");
+
   return (
     <div style={{ display: "flex", padding: "1rem" }}>
+      <Fab size="small" color="secondary" style={{ marginRight: "0.5rem" }}>
+        {editMode ? (
+          <PlayIcon onClick={() => setEditMode(false)} />
+        ) : (
+          <EditIcon onClick={() => setEditMode(true)} />
+        )}
+      </Fab>
       <Fab size="small" color="secondary" style={{ marginRight: "0.5rem" }}>
         <ViewComfyIcon />
       </Fab>

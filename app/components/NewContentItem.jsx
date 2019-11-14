@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 
-import { connect } from "react-redux";
-import { Items, TextItems } from "../actions";
-
 import { CONTENT } from "../constants/ItemTypes";
 
 import {
@@ -16,31 +13,34 @@ import {
 
 const NewContentForm = props => {
   const {
-    active,
-    setActive,
-    onAction,
+    onComplete,
     presentation,
     sections,
     addItem,
-    addTextItem
+    addTextItem,
+    addSection
   } = props;
 
+  const [open, setOpen] = useState(true);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState();
 
-  let section = sections.find(
-    section => section.presentation_id == presentation._id
-  );
+  // let section = sections.find(
+  //   section => section.presentation_id == presentation._id
+  // );
 
   const submit = async () => {
-    let item = await addItem(presentation._id, section._id, CONTENT, title);
-    await addTextItem(item.id, content, {});
-    setActive(false);
-    onAction();
+    // if (!section) {
+    //   section = await addSection(presentation._id, "Section");
+    // }
+    // let item = await addItem(presentation._id, section._id, CONTENT, title);
+    // await addTextItem(item._id, content, {});
+    // setOpen(false);
+    // onComplete();
   };
 
   return (
-    <Dialog open={active} onClose={() => setActive(false)}>
+    <Dialog open={open} onClose={() => setOpen(false)}>
       <DialogTitle>Add Content Item</DialogTitle>
       <DialogContent>
         <TextField
@@ -74,11 +74,4 @@ const NewContentForm = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  presentation: state.Presentation,
-  sections: state.Sections
-});
-
-const mapDispatchtoProps = { ...Items, ...TextItems };
-
-export default connect(mapStateToProps, mapDispatchtoProps)(NewContentForm);
+export default NewContentForm;

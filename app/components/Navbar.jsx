@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-import { connect } from "react-redux";
+import React, { useState, useGlobal, createElement } from "reactn";
 
 import { AppBar, Toolbar, FormControlLabel, Switch } from "@material-ui/core";
 
@@ -10,9 +8,12 @@ import NewSectionForm from "./NewSectionForm";
 import NewContentItem from "./NewContentItem";
 
 const Navbar = props => {
-  const { presentation } = props;
+  const [presentation] = useGlobal("presentation");
 
   const [presentMode, setPresentMode] = useState(false);
+  const [modalComponent, setModalComponent] = useGlobal(
+    "interface.modalComponent"
+  );
 
   let navItems = [
     {
@@ -23,7 +24,6 @@ const Navbar = props => {
       ]
     }
   ];
-
   if (presentation && presentation._id) {
     navItems.push({
       label: "Add Item",
@@ -56,32 +56,35 @@ const Navbar = props => {
   }
 
   return (
-    <AppBar position="static">
-      <Toolbar variant="dense">
-        {navItems.map((item, i) => (
-          <NavItem key={i} label={item.label} items={item.items} />
-        ))}
-        {presentation._id && (
-          <React.Fragment>
-            <div style={{ flex: 1 }}></div>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={presentMode}
-                  onChange={() => setPresentMode(!presentMode)}
-                  value="checkedA"
-                />
-              }
-              label="Present Mode"
-            />
-          </React.Fragment>
-        )}
-      </Toolbar>
-    </AppBar>
+    <React.Fragment>
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          {navItems.map((item, i) => (
+            <NavItem key={i} label={item.label} items={item.items} />
+          ))}
+          {presentation && (
+            <React.Fragment>
+              <div style={{ flex: 1 }}></div>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={presentMode}
+                    onChange={() => setPresentMode(!presentMode)}
+                    value="checkedA"
+                  />
+                }
+                label="Present Mode"
+              />
+            </React.Fragment>
+          )}
+        </Toolbar>
+      </AppBar>
+      {modalComponent &&
+        createElement(modalComponent, {
+          onComplete: () => setModalComponent(null)
+        })}
+    </React.Fragment>
   );
 };
 
-const mapStateToProps = state => ({ presentation: state.Presentation });
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default Navbar;

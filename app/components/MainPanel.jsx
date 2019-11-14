@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useGlobal } from "reactn";
+
 import { Grid } from "@material-ui/core";
+
 import EditModeToggle from "./EditModeToggle";
 import SlidePreviewSizeSlider from "./SlidePreviewSizeSlider";
 import SlideCardList from "./SlideCardList";
 import PreviewSlide from "./PreviewSlide";
 
-const EditPanel = props => {
+const MainPanel = props => {
+  const [editMode] = useGlobal("interface.edit-mode");
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -19,7 +23,7 @@ const EditPanel = props => {
         </Grid>
         <Grid container>
           <Grid item xs={8}>
-            <SlideCardList />
+            {!editMode && <SlideCardList />}
           </Grid>
           <Grid item xs={4}>
             <PreviewSlide />
@@ -30,4 +34,4 @@ const EditPanel = props => {
   );
 };
 
-export default EditPanel;
+export default MainPanel;

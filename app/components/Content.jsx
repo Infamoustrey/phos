@@ -1,15 +1,15 @@
-import React from "react";
-
-import { connect } from "react-redux";
+import React, { useGlobal } from "reactn";
 
 import { Grid } from "@material-ui/core";
 
 import PresentationItems from "./PresentationItems";
-import EditPanel from "./EditPanel";
+import MainPanel from "./MainPanel";
 import NoPresentationLoaded from "./NoPresentationLoaded";
 
-const Content = ({ presentation }) => {
-  return !presentation._id ? (
+const Content = () => {
+  const [presentation] = useGlobal("presentation");
+
+  return !presentation ? (
     <NoPresentationLoaded />
   ) : (
     <Grid container>
@@ -17,13 +17,10 @@ const Content = ({ presentation }) => {
         <PresentationItems />
       </Grid>
       <Grid item xs={10}>
-        <EditPanel />
+        <MainPanel />
       </Grid>
     </Grid>
   );
 };
 
-const mapStateToProps = state => ({ presentation: state.Presentation });
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Content);
+export default Content;

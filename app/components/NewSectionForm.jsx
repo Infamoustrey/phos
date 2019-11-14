@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useGlobal, useDispatch } from "reactn";
 
-import { connect } from "react-redux";
-import { Sections } from "../actions";
+import { createSection } from "../store/Sections";
 
 import {
   Button,
@@ -13,18 +12,22 @@ import {
 } from "@material-ui/core";
 
 const NewSectionForm = props => {
-  const { active, setActive, onAction, addSection, presentation } = props;
+  const { onComplete } = props;
 
+  const [presentation] = useGlobal("presentation");
+
+  const [open, setOpen] = useState(true);
   const [title, setTitle] = useState("");
 
   const submit = async () => {
-    addSection(presentation._id, title);
-    setActive(false);
-    onAction();
+    let res = await createSection(presentation._id, title);
+    console.log(res);
+    setOpen(false);
+    onComplete();
   };
 
   return (
-    <Dialog open={active} onClose={() => setActive(false)}>
+    <Dialog open={open} onClose={() => setActive(false)}>
       <DialogTitle>Add Section</DialogTitle>
       <DialogContent>
         <TextField
@@ -46,10 +49,4 @@ const NewSectionForm = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  presentation: state.Presentation
-});
-
-const mapDispatchtoProps = { ...Sections };
-
-export default connect(mapStateToProps, mapDispatchtoProps)(NewSectionForm);
+export default NewSectionForm;

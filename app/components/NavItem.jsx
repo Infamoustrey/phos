@@ -1,24 +1,26 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useGlobal } from "reactn";
 
 import { Button, Menu, ListItem, ListItemText, Icon } from "@material-ui/core";
 
-const NavSubItem = ({ item, onAction }) => {
+const NavSubItem = ({ item, onActivate }) => {
   const { label, icon, component } = item;
 
-  const [active, setActive] = useState(false);
+  const [modalComponent, setModalComponent] = useGlobal(
+    "interface.modalComponent"
+  );
 
   return (
     <React.Fragment>
-      <ListItem onClick={() => setActive(!active)} button>
+      <ListItem
+        onClick={() => {
+          setModalComponent(component);
+          onActivate();
+        }}
+        button
+      >
         <ListItemText primary={label} />
         {icon && <Icon style={{ marginLeft: "2rem" }}>{icon}</Icon>}
       </ListItem>
-      {component &&
-        React.createElement(
-          component,
-          { active, setActive, onAction: () => onAction() },
-          null
-        )}
     </React.Fragment>
   );
 };
@@ -29,10 +31,6 @@ const NavItem = props => {
   const [open, setOpen] = useState(false);
 
   const buttonRef = useRef(null);
-
-  const action = () => {
-    setOpen(false);
-  };
 
   return (
     <React.Fragment>
@@ -51,7 +49,7 @@ const NavItem = props => {
         transitionDuration={100}
       >
         {items.map((item, i) => (
-          <NavSubItem key={i} item={item} onAction={action} />
+          <NavSubItem key={i} item={item} onActivate={() => setOpen(false)} />
         ))}
       </Menu>
     </React.Fragment>

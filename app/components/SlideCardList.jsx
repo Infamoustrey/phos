@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Paper,
   Grid,
@@ -11,9 +12,8 @@ import {
 
 const SlideCardList = props => {
   const items = new Array(15).fill(0).map(() => {
-    let sqr = parseInt(Math.random(50) * 100) + 500;
     return {
-      img: `https://picsum.photos/${sqr}/${sqr}.jpg`,
+      img: "storage/img/jesus.jpg",
       title: "Image",
       author: "author"
     };

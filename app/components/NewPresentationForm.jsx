@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useDispatch } from "reactn";
 
-import { connect } from "react-redux";
-import { Presentations } from "../actions";
+import { CREATE_PRESENTATION } from "../store/Presentations";
 
 import {
   Button,
@@ -15,29 +14,25 @@ import {
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import dayjs from "dayjs";
 
-const NewPresentationForm = props => {
-  const { active, setActive, onAction, createPresentation } = props;
+const NewPresentationForm = ({ onComplete }) => {
+  const createPresentation = useDispatch(CREATE_PRESENTATION);
 
+  const [open, setOpen] = useState(true);
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(dayjs().format("MM/DD/YYYY"));
 
   const submit = async () => {
     await createPresentation(title, date);
-    setActive(false);
-    onAction();
+    setOpen(false);
+    onComplete();
   };
   const cancel = async () => {
-    setActive(false);
-    onAction();
+    setOpen(false);
+    onComplete();
   };
 
   return (
-    <Dialog
-      fullWidth
-      maxWidth="sm"
-      open={active}
-      onClose={() => setActive(false)}
-    >
+    <Dialog fullWidth maxWidth="sm" open={open} onClose={() => setOpen(false)}>
       <DialogTitle>Create a Presentation</DialogTitle>
       <DialogContent>
         <div
@@ -88,11 +83,4 @@ const NewPresentationForm = props => {
   );
 };
 
-const mapStateToProps = state => ({});
-
-const mapDispatchtoProps = { ...Presentations };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchtoProps
-)(NewPresentationForm);
+export default NewPresentationForm;
