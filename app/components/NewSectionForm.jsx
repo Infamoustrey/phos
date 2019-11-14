@@ -20,8 +20,7 @@ const NewSectionForm = props => {
   const [title, setTitle] = useState("");
 
   const submit = async () => {
-    let res = await createSection(presentation._id, title);
-    console.log(res);
+    await createSection(presentation._id, title);
     setOpen(false);
     onComplete();
   };

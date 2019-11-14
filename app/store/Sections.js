@@ -12,7 +12,9 @@ addReducer(ADD_SECTION, async (global, dispatch, section) => ({
 
 const createSection = async (presentation_id, title) => {
   let section = { _id: uuid(), presentation_id, title };
+
   await getDispatch()[ADD_SECTION](section);
+
   return Promise.resolve(section);
 };
 

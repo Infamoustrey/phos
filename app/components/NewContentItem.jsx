@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useGlobal } from "reactn";
+
+import { createSection } from "../store/Sections";
+import { createItem } from "../store/Items";
+import { createTextItem } from "../store/TextItems";
 
 import { CONTENT } from "../constants/ItemTypes";
 
@@ -12,31 +16,27 @@ import {
 } from "@material-ui/core";
 
 const NewContentForm = props => {
-  const {
-    onComplete,
-    presentation,
-    sections,
-    addItem,
-    addTextItem,
-    addSection
-  } = props;
+  const { onComplete } = props;
+
+  const [sections] = useGlobal("sections");
+  const [presentation] = useGlobal("presentation");
 
   const [open, setOpen] = useState(true);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState();
 
-  // let section = sections.find(
-  //   section => section.presentation_id == presentation._id
-  // );
+  let section = sections.find(
+    section => section.presentation_id == presentation._id
+  );
 
   const submit = async () => {
-    // if (!section) {
-    //   section = await addSection(presentation._id, "Section");
-    // }
-    // let item = await addItem(presentation._id, section._id, CONTENT, title);
-    // await addTextItem(item._id, content, {});
-    // setOpen(false);
-    // onComplete();
+    if (!section) {
+      section = await createSection(presentation._id, "Section");
+    }
+    let item = await createItem(presentation._id, section._id, CONTENT, title);
+    await createTextItem(item._id, content, {});
+    setOpen(false);
+    onComplete();
   };
 
   return (

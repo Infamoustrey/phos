@@ -1,4 +1,4 @@
-import React from "react";
+import React from "reactn";
 
 import {
   Paper,
@@ -19,29 +19,17 @@ const SlideCardList = props => {
     };
   });
   return (
-    <Paper
-      elevation={3}
-      style={{
-        padding: "1rem",
-        minHeight: 500,
-        maxHeight: "72vh",
-        overflowY: "scroll"
-      }}
-    >
+    <Paper elevation={2}>
       <Grid container spacing={2}>
         {items.map((item, i) => (
-          <Grid key={i} item xs={4}>
-            <Card style={{ width: "100%" }}>
+          <Grid item xs={4}>
+            <Card>
               <CardActionArea>
                 <CardMedia
                   style={{ height: 160 }}
                   image={item.img}
                   title={item.title}
                 />
-
-                <CardContent>
-                  <Typography>Hi</Typography>
-                </CardContent>
               </CardActionArea>
             </Card>
           </Grid>

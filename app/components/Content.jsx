@@ -12,11 +12,11 @@ const Content = () => {
   return !presentation ? (
     <NoPresentationLoaded />
   ) : (
-    <Grid container>
-      <Grid item xs={2}>
+    <Grid container className="full-height">
+      <Grid item xs={2} className="full-height">
         <PresentationItems />
       </Grid>
-      <Grid item xs={10}>
+      <Grid item xs={10} className="full-height">
         <MainPanel />
       </Grid>
     </Grid>

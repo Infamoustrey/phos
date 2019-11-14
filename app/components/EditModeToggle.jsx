@@ -12,12 +12,13 @@ const EditModeToggle = props => {
 
   return (
     <div style={{ display: "flex", padding: "1rem" }}>
-      <Fab size="small" color="secondary" style={{ marginRight: "0.5rem" }}>
-        {editMode ? (
-          <PlayIcon onClick={() => setEditMode(false)} />
-        ) : (
-          <EditIcon onClick={() => setEditMode(true)} />
-        )}
+      <Fab
+        size="small"
+        color="secondary"
+        style={{ marginRight: "0.5rem" }}
+        onClick={() => setEditMode(!editMode)}
+      >
+        {editMode ? <PlayIcon /> : <EditIcon />}
       </Fab>
       <Fab size="small" color="secondary" style={{ marginRight: "0.5rem" }}>
         <ViewComfyIcon />

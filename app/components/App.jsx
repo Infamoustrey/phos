@@ -21,7 +21,9 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <div style={{ height: "100vh" }}>
+        <div
+          style={{ height: "100vh", display: "flex", flexDirection: "column" }}
+        >
           <Navbar />
           <Content />
         </div>

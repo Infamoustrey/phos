@@ -6,13 +6,19 @@ import EditModeToggle from "./EditModeToggle";
 import SlidePreviewSizeSlider from "./SlidePreviewSizeSlider";
 import SlideCardList from "./SlideCardList";
 import PreviewSlide from "./PreviewSlide";
+import EditPane from "./EditPane";
 
 const MainPanel = props => {
   const [editMode] = useGlobal("interface.edit-mode");
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
+    <Grid container className="full-height">
+      <Grid
+        item
+        xs={12}
+        className="full-height"
+        style={{ flexDirection: "column" }}
+      >
         <Grid container>
           <Grid item xs={2}>
             <EditModeToggle />
@@ -21,9 +27,9 @@ const MainPanel = props => {
             <SlidePreviewSizeSlider />
           </Grid>
         </Grid>
-        <Grid container>
-          <Grid item xs={8}>
-            {!editMode && <SlideCardList />}
+        <Grid container className="full-height">
+          <Grid item xs={8} style={{ maxHeight: "100%", overflowY: "scroll" }}>
+            {editMode ? <EditPane /> : <SlideCardList />}
           </Grid>
           <Grid item xs={4}>
             <PreviewSlide />
