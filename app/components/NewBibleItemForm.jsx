@@ -36,7 +36,6 @@ const NewBibleItemForm = props => {
   const [verse, setVerse] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const [content, setContent] = useState("");
-  const [scripture, setScripture] = useState("");
   const [version, setVersion] = useState("");
 
   const queryVerse = async () => {
