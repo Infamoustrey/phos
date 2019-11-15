@@ -34,13 +34,24 @@ const NewBibleItemForm = props => {
   const [open, setOpen] = useState(true);
   const [title, setTitle] = useState("");
   const [verse, setVerse] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
   const [content, setContent] = useState("");
   const [scripture, setScripture] = useState("");
   const [version, setVersion] = useState("");
 
   const queryVerse = async () => {
+    setErrorMessage(null);
     if (!version) return Promise.resolve();
-    let response = await searchForVerse(verse, version);
+    let response;
+    try {
+      response = await searchForVerse(verse, version);
+    } catch (e) {
+      setErrorMessage(
+        "Could not find verse, try this format {book} {chapter}:{verses ex: 1, 1-2}"
+      );
+      return Promise.resolve();
+    }
+
     setVerse(response.verse);
     setContent(response.content.join("\n\n"));
     return Promise.resolve();
@@ -81,6 +92,8 @@ const NewBibleItemForm = props => {
         <TextField
           fullWidth
           label="Verse"
+          error={!!errorMessage}
+          helperText={errorMessage}
           variant="outlined"
           value={verse}
           onChange={e => setVerse(e.target.value)}

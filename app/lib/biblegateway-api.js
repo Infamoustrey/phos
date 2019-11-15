@@ -23,6 +23,8 @@ const searchForVerse = async (search, version) => {
       if (text.substr(0, 4) != "Back") content.push(text);
     }
 
+    if (content.length === 0) throw new Error("Could not find verse");
+
     return Promise.resolve({ verse, content });
   } catch (e) {
     return Promise.reject(e);
