@@ -20,7 +20,7 @@ const SlideCardList = props => {
     <Paper elevation={2}>
       <Grid container spacing={2}>
         {items.map((item, i) => (
-          <Grid item xs={4}>
+          <Grid key={i} item xs={4}>
             <Card>
               <CardActionArea>
                 <CardMedia

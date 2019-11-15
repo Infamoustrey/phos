@@ -11,7 +11,7 @@ import { useTheme } from "@material-ui/styles";
 const SectionListItem = ({ item }) => {
   const theme = useTheme();
 
-  const [editMode, setEditMode] = useGlobal("interface.edit-mode");
+  const [editMode, setEditMode] = useGlobal("interface.editMode");
   const [selectedItem, setSelectedItem] = useGlobal("selectedItem");
 
   const selectItem = () => {

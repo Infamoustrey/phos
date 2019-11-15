@@ -8,7 +8,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import PlayIcon from "@material-ui/icons/PlayArrow";
 
 const EditModeToggle = props => {
-  const [editMode, setEditMode] = useGlobal("interface.edit-mode");
+  const [editMode, setEditMode] = useGlobal("interface.editMode");
 
   return (
     <div style={{ display: "flex", padding: "1rem" }}>

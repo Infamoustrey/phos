@@ -9,7 +9,7 @@ import PreviewSlide from "./PreviewSlide";
 import EditPane from "./EditPane";
 
 const MainPanel = props => {
-  const [editMode] = useGlobal("interface.edit-mode");
+  const [editMode] = useGlobal("interface.editMode");
 
   return (
     <Grid container className="full-height">

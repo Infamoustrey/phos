@@ -20,6 +20,7 @@ const NewContentForm = props => {
 
   const [sections] = useGlobal("sections");
   const [presentation] = useGlobal("presentation");
+  const [editMode, setEditMode] = useGlobal("interface.editMode");
 
   const [open, setOpen] = useState(true);
   const [title, setTitle] = useState("");
@@ -35,6 +36,7 @@ const NewContentForm = props => {
     }
     let item = await createItem(presentation._id, section._id, CONTENT, title);
     await createTextItem(item._id, content, {});
+    setEditMode(true);
     setOpen(false);
     onComplete();
   };
