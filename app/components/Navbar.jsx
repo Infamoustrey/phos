@@ -6,6 +6,7 @@ import NavItem from "./NavItem";
 import NewPresentationForm from "./NewPresentationForm";
 import NewSectionForm from "./NewSectionForm";
 import NewContentItem from "./NewContentItem";
+import NewBibleItemForm from "./NewBibleItemForm";
 
 const Navbar = props => {
   const [presentation] = useGlobal("presentation");
@@ -29,7 +30,7 @@ const Navbar = props => {
       label: "Add Item",
       items: [
         { label: "Song", component: NewPresentationForm, icon: "music_note" },
-        { label: "Bible", component: NewPresentationForm, icon: "book" },
+        { label: "Bible", component: NewBibleItemForm, icon: "book" },
         { label: "Content", component: NewContentItem, icon: "dashboard" },
         {
           label: "Section",

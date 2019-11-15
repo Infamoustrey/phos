@@ -1,9 +1,18 @@
 import React, { useState, useRef, useGlobal } from "reactn";
 
-import { Button, Menu, ListItem, ListItemText, Icon } from "@material-ui/core";
+import {
+  Button,
+  Menu,
+  ListItem,
+  ListItemText,
+  Icon,
+  useTheme
+} from "@material-ui/core";
 
 const NavSubItem = ({ item, onActivate }) => {
   const { label, icon, component } = item;
+
+  const theme = useTheme();
 
   const [modalComponent, setModalComponent] = useGlobal(
     "interface.modalComponent"
@@ -18,8 +27,8 @@ const NavSubItem = ({ item, onActivate }) => {
         }}
         button
       >
+        {icon && <Icon style={{ marginRight: theme.spacing(2) }}>{icon}</Icon>}
         <ListItemText primary={label} />
-        {icon && <Icon style={{ marginLeft: "2rem" }}>{icon}</Icon>}
       </ListItem>
     </React.Fragment>
   );
