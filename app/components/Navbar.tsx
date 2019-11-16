@@ -1,4 +1,6 @@
-import React, { useState, useGlobal, createElement } from "reactn";
+import React, { useState, createElement } from "reactn";
+
+import { useGlobal } from "../store";
 
 import { AppBar, Toolbar, FormControlLabel, Switch } from "@material-ui/core";
 
@@ -7,25 +9,24 @@ import NewPresentationForm from "./NewPresentationForm";
 import NewSectionForm from "./NewSectionForm";
 import NewContentItem from "./NewContentItem";
 import NewBibleItemForm from "./NewBibleItemForm";
+import { NavListItem } from "../interfaces/NavItem";
 
 const Navbar = props => {
   const [presentation] = useGlobal("presentation");
 
   const [presentMode, setPresentMode] = useState(false);
-  const [modalComponent, setModalComponent] = useGlobal(
-    "interface.modalComponent"
-  );
+  const [userInterface, setUserInterface] = useGlobal("userInterface");
 
-  let navItems = [
+  let navItems: NavListItem[] = [
     {
       label: "File",
       items: [
-        { label: "New", component: NewPresentationForm },
-        { label: "Open" }
+        { label: "New", component: NewPresentationForm }
+        // { label: "Open" }
       ]
     }
   ];
-  if (presentation && presentation._id) {
+  if (presentation && presentation.id) {
     navItems.push({
       label: "Add Item",
       items: [
@@ -80,9 +81,10 @@ const Navbar = props => {
           )}
         </Toolbar>
       </AppBar>
-      {modalComponent &&
-        createElement(modalComponent, {
-          onComplete: () => setModalComponent(null)
+      {userInterface.modalComponent &&
+        createElement(userInterface.modalComponent, {
+          onComplete: () =>
+            setUserInterface({ ...userInterface, modalComponent: null })
         })}
     </React.Fragment>
   );

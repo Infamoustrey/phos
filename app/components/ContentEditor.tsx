@@ -1,4 +1,7 @@
-import React, { selectedItem, useGlobal } from "reactn";
+import React from "reactn";
+
+import { useGlobal } from "../store";
+
 import { Grid, useTheme, TextField } from "@material-ui/core";
 
 const ContentEditor = () => {
@@ -19,7 +22,7 @@ const ContentEditor = () => {
         />
         {textItems &&
           textItems
-            .filter(textItem => textItem.item_id === selectedItem._id)
+            .filter(textItem => textItem.service_item_id === selectedItem.id)
             .map(textItem => (
               <TextField
                 style={{ marginTop: theme.spacing(2) }}

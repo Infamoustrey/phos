@@ -1,0 +1,8 @@
+export enum ItemTypes {
+  SONG = "SONG",
+  BIBLE = "BIBLE",
+  ANNOUNCEMENT = "ANNOUNCEMENT",
+  VIDEO = "VIDEO",
+  SLIDESHOW = "SLIDESHOW",
+  CONTENT = "CONTENT"
+}

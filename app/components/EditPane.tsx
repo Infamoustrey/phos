@@ -1,6 +1,8 @@
-import React, { useGlobal, createElement } from "reactn";
+import React, { createElement } from "reactn";
 
-import { CONTENT, BIBLE } from "../constants/ItemTypes";
+import { useGlobal } from "../store";
+
+import { ItemTypes } from "../enums/ItemTypes";
 
 import { Paper, useTheme } from "@material-ui/core";
 
@@ -16,8 +18,8 @@ const EditPane = () => {
   if (!selectedItem) return <NoSelectedItem />;
 
   const editor = {
-    [CONTENT]: ContentEditor,
-    [BIBLE]: BibleEditor
+    [ItemTypes.CONTENT]: ContentEditor,
+    [ItemTypes.BIBLE]: BibleEditor
   };
 
   return (

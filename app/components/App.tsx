@@ -1,5 +1,7 @@
 import React from "reactn";
 
+import StateProvider from "../store";
+
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import deepPurple from "@material-ui/core/colors/deepPurple";
 import green from "@material-ui/core/colors/green";
@@ -19,16 +21,22 @@ const theme = createMuiTheme({
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <div
-          style={{ height: "100vh", display: "flex", flexDirection: "column" }}
-        >
-          <Navbar />
-          <Content />
-        </div>
-      </MuiPickersUtilsProvider>
-    </ThemeProvider>
+    <StateProvider>
+      <ThemeProvider theme={theme}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <div
+            style={{
+              height: "100vh",
+              display: "flex",
+              flexDirection: "column"
+            }}
+          >
+            <Navbar />
+            <Content />
+          </div>
+        </MuiPickersUtilsProvider>
+      </ThemeProvider>
+    </StateProvider>
   );
 };
 

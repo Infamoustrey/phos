@@ -1,4 +1,6 @@
-import React, { useGlobal } from "reactn";
+import React from "reactn";
+
+import { useGlobal } from "../store";
 
 import { Grid } from "@material-ui/core";
 

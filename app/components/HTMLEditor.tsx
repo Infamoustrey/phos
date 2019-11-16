@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from "reactn";
 
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import { Typography, Box } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/styles";
+import { makeStyles, useTheme, DefaultTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles({
-  root: theme => ({
+  root: (theme: any) => ({
     borderWidth: 1,
     position: "relative",
     borderStyle: "solid",

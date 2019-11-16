@@ -1,5 +1,6 @@
-import React, { useState, useDispatch } from "reactn";
+import React, { useState } from "reactn";
 
+import { useDispatch } from "../store";
 import { CREATE_PRESENTATION } from "../store/Presentations";
 
 import {
@@ -12,7 +13,8 @@ import {
 } from "@material-ui/core";
 
 import { KeyboardDatePicker } from "@material-ui/pickers";
-import dayjs from "dayjs";
+import * as dayjs from "dayjs";
+import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
 
 const NewPresentationForm = ({ onComplete }) => {
   const createPresentation = useDispatch(CREATE_PRESENTATION);
@@ -65,7 +67,9 @@ const NewPresentationForm = ({ onComplete }) => {
               margin="normal"
               label="Date"
               value={date}
-              onChange={e => setDate(e.target.value)}
+              onChange={(date: MaterialUiPickersDate) =>
+                setDate(dayjs(date).format("MM/DD/YYYY"))
+              }
             />
           </div>
           <div style={{ flex: "1" }}></div>

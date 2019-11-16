@@ -1,4 +1,6 @@
-import React, { useState, useRef, useGlobal } from "reactn";
+import React, { useState, useRef } from "reactn";
+
+import { useGlobal } from "../store";
 
 import {
   Button,
@@ -14,15 +16,13 @@ const NavSubItem = ({ item, onActivate }) => {
 
   const theme = useTheme();
 
-  const [modalComponent, setModalComponent] = useGlobal(
-    "interface.modalComponent"
-  );
+  const [userInterface, setUserInterface] = useGlobal("userInterface");
 
   return (
     <React.Fragment>
       <ListItem
         onClick={() => {
-          setModalComponent(component);
+          setUserInterface({ ...userInterface, modalComponent: component });
           onActivate();
         }}
         button

@@ -1,4 +1,6 @@
-import React, { useGlobal } from "reactn";
+import React from "reactn";
+
+import { useGlobal } from "../store";
 
 import {
   ListItem,
@@ -6,17 +8,18 @@ import {
   ListItemAvatar,
   Avatar
 } from "@material-ui/core";
-import { useTheme } from "@material-ui/styles";
+
+import { useTheme } from "@material-ui/core/styles";
 
 const SectionListItem = ({ item }) => {
   const theme = useTheme();
 
-  const [editMode, setEditMode] = useGlobal("interface.editMode");
+  const [userInterface, setUserInterface] = useGlobal("userInterface");
   const [selectedItem, setSelectedItem] = useGlobal("selectedItem");
 
   const selectItem = () => {
     setSelectedItem(item);
-    setEditMode(true);
+    setUserInterface({ ...userInterface, editMode: true });
   };
 
   return (

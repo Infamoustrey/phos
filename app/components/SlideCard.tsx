@@ -1,6 +1,6 @@
-import React from "react";
+import React from "reactn";
+
 import {
-  Grid,
   Card,
   CardActionArea,
   CardMedia,

@@ -1,10 +1,12 @@
-import React, { useState, useGlobal } from "reactn";
+import React, { useState } from "reactn";
 
-import { createSection } from "../store/Sections";
-import { createItem } from "../store/Items";
-import { createTextItem } from "../store/TextItems";
+import { useGlobal, useAction } from "../store";
 
-import { CONTENT } from "../constants/ItemTypes";
+import { CREATE_SECTION } from "../store/Sections";
+import { CREATE_ITEM } from "../store/ServiceItems";
+import { CREATE_TEXT_ITEM } from "../store/TextItems";
+
+import { ItemTypes } from "../enums/ItemTypes";
 
 import {
   Button,
@@ -18,25 +20,34 @@ import {
 const NewContentForm = props => {
   const { onComplete } = props;
 
+  const createSection = useAction(CREATE_SECTION);
+  const createItem = useAction(CREATE_ITEM);
+  const createTextItem = useAction(CREATE_TEXT_ITEM);
+
   const [sections] = useGlobal("sections");
   const [presentation] = useGlobal("presentation");
-  const [editMode, setEditMode] = useGlobal("interface.editMode");
+  const [userInterface, setUserInterface] = useGlobal("userInterface");
 
   const [open, setOpen] = useState(true);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState();
 
   let section = sections.find(
-    section => section.presentation_id == presentation._id
+    section => section.presentation_id == presentation.id
   );
 
   const submit = async () => {
     if (!section) {
-      section = await createSection(presentation._id, "Section");
+      section = await createSection(presentation.id, "Section");
     }
-    let item = await createItem(presentation._id, section._id, CONTENT, title);
-    await createTextItem(item._id, content, {});
-    setEditMode(true);
+    let item = await createItem(
+      presentation.id,
+      section.id,
+      ItemTypes.CONTENT,
+      title
+    );
+    await createTextItem(item.id, content, {});
+    setUserInterface({ ...userInterface, editMode: true });
     setOpen(false);
     onComplete();
   };

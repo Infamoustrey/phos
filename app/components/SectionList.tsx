@@ -1,4 +1,6 @@
-import React, { useState, useGlobal } from "reactn";
+import React, { useState } from "reactn";
+
+import { useGlobal } from "../store";
 
 import { ListItem, ListItemText, Divider, Collapse } from "@material-ui/core";
 
@@ -8,7 +10,7 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import SectionListItem from "./SectionListItem";
 
 const SectionList = ({ section }) => {
-  const [items] = useGlobal("items");
+  const [serviceItems] = useGlobal("serviceItems");
 
   const [open, setOpen] = useState(false);
 
@@ -20,7 +22,7 @@ const SectionList = ({ section }) => {
       </ListItem>
       <Divider component="li" />
       <Collapse in={open} timeout="auto" unmountOnExit>
-        {items
+        {serviceItems
           .filter(item => item.section_id === section._id)
           .map((item, i) => (
             <SectionListItem key={i} item={item} />

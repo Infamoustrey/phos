@@ -1,4 +1,6 @@
-import React, { useGlobal } from "reactn";
+import React from "reactn";
+
+import { useGlobal } from "../store";
 
 import { Fab } from "@material-ui/core";
 
@@ -8,7 +10,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import PlayIcon from "@material-ui/icons/PlayArrow";
 
 const EditModeToggle = props => {
-  const [editMode, setEditMode] = useGlobal("interface.editMode");
+  const [userInterface, setUserInterface] = useGlobal("userInterface");
 
   return (
     <div style={{ display: "flex", padding: "1rem" }}>
@@ -16,9 +18,14 @@ const EditModeToggle = props => {
         size="small"
         color="secondary"
         style={{ marginRight: "0.5rem" }}
-        onClick={() => setEditMode(!editMode)}
+        onClick={() =>
+          setUserInterface({
+            ...userInterface,
+            editMode: !userInterface.editMode
+          })
+        }
       >
-        {editMode ? <PlayIcon /> : <EditIcon />}
+        {userInterface.editMode ? <PlayIcon /> : <EditIcon />}
       </Fab>
       <Fab size="small" color="secondary" style={{ marginRight: "0.5rem" }}>
         <ViewComfyIcon />

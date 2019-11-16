@@ -1,4 +1,6 @@
-import React, { useGlobal } from "reactn";
+import React from "reactn";
+
+import { useGlobal } from "../store";
 
 import { TextField, Grid, List, Typography } from "@material-ui/core";
 

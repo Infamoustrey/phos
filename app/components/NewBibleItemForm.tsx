@@ -1,10 +1,12 @@
-import React, { useState, useGlobal, useRef } from "reactn";
+import React, { useState, useRef } from "reactn";
 
-import { createSection } from "../store/Sections";
-import { createItem } from "../store/Items";
-import { createBibleItem } from "../store/BibleItem";
+import { useAction, useGlobal } from "../store";
 
-import { BIBLE } from "../constants/ItemTypes";
+import { CREATE_SECTION } from "../store/Sections";
+import { CREATE_ITEM } from "../store/ServiceItems";
+import { CREATE_BIBLE_ITEM } from "../store/BibleItems";
+
+import { ItemTypes } from "../enums/ItemTypes";
 import englishVersionList from "../constants/bible-versions/English";
 import { searchForVerse } from "../lib/biblegateway-api";
 
@@ -29,7 +31,11 @@ const NewBibleItemForm = props => {
 
   const [sections] = useGlobal("sections");
   const [presentation] = useGlobal("presentation");
-  const [editMode, setEditMode] = useGlobal("interface.editMode");
+  const [userInterface, setUserInterface] = useGlobal("userInterface");
+
+  const createSection = useAction(CREATE_SECTION);
+  const createItem = useAction(CREATE_ITEM);
+  const createBibleItem = useAction(CREATE_BIBLE_ITEM);
 
   const [open, setOpen] = useState(true);
   const [title, setTitle] = useState("");
@@ -57,7 +63,7 @@ const NewBibleItemForm = props => {
   };
 
   let section = sections.find(
-    section => section.presentation_id == presentation._id
+    section => section.presentation_id == presentation.id
   );
 
   const submit = async () => {
@@ -66,14 +72,19 @@ const NewBibleItemForm = props => {
     if (!title) setTitle(passage);
 
     if (!section) {
-      section = await createSection(presentation._id, "Section");
+      section = await createSection(presentation.id, "Section");
     }
 
-    let item = await createItem(presentation._id, section._id, BIBLE, title);
+    let item = await createItem(
+      presentation.id,
+      section.id,
+      ItemTypes.BIBLE,
+      title
+    );
 
     await createBibleItem(item._id, passage, version, verses);
 
-    setEditMode(true);
+    setUserInterface({ ...userInterface, editMode: true });
     setOpen(false);
     onComplete();
 
@@ -112,7 +123,7 @@ const NewBibleItemForm = props => {
           <InputLabel ref={inputLabel}>Version</InputLabel>
           <Select
             value={version}
-            onChange={e => {
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
               setVersion(e.target.value);
               queryVerse();
             }}

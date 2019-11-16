@@ -1,4 +1,4 @@
-import React from "react";
+import React from "reactn";
 import { Slider } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 
