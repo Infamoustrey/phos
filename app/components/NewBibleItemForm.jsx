@@ -1,4 +1,4 @@
-import React, { useState, useGlobal, useRef, useEffect } from "reactn";
+import React, { useState, useGlobal, useRef } from "reactn";
 
 import { createSection } from "../store/Sections";
 import { createItem } from "../store/Items";
@@ -33,17 +33,17 @@ const NewBibleItemForm = props => {
 
   const [open, setOpen] = useState(true);
   const [title, setTitle] = useState("");
-  const [verse, setVerse] = useState("");
+  const [passage, setPassage] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
-  const [content, setContent] = useState("");
+  const [verses, setVerses] = useState("");
   const [version, setVersion] = useState("");
 
   const queryVerse = async () => {
     setErrorMessage(null);
-    if (!version) return Promise.resolve();
+    if (!version || !passage) return Promise.resolve();
     let response;
     try {
-      response = await searchForVerse(verse, version);
+      response = await searchForVerse(passage, version);
     } catch (e) {
       setErrorMessage(
         "Could not find verse, try this format {book} {chapter}:{verses ex: 1, 1-2}"
@@ -51,8 +51,8 @@ const NewBibleItemForm = props => {
       return Promise.resolve();
     }
 
-    setVerse(response.verse);
-    setContent(response.content.join("\n\n"));
+    setPassage(response.verse);
+    setVerses(response.content.join("\n\n"));
     return Promise.resolve();
   };
 
@@ -61,14 +61,23 @@ const NewBibleItemForm = props => {
   );
 
   const submit = async () => {
+    if (!passage) return Promise.resolve();
+
+    if (!title) setTitle(passage);
+
     if (!section) {
       section = await createSection(presentation._id, "Section");
     }
+
     let item = await createItem(presentation._id, section._id, BIBLE, title);
-    await createTextItem(item._id, content, {});
+
+    await createBibleItem(item._id, passage, version, verses);
+
     setEditMode(true);
     setOpen(false);
     onComplete();
+
+    return Promise.resolve();
   };
 
   const cancel = () => {
@@ -90,12 +99,12 @@ const NewBibleItemForm = props => {
         />
         <TextField
           fullWidth
-          label="Verse"
+          label="Passage"
           error={!!errorMessage}
           helperText={errorMessage}
           variant="outlined"
-          value={verse}
-          onChange={e => setVerse(e.target.value)}
+          value={passage}
+          onChange={e => setPassage(e.target.value)}
           onBlur={queryVerse}
           style={{ marginBottom: "1rem" }}
         />
@@ -107,6 +116,7 @@ const NewBibleItemForm = props => {
               setVersion(e.target.value);
               queryVerse();
             }}
+            onBlur={queryVerse}
             labelWidth={
               inputLabel.current
                 ? inputLabel.current.offsetWidth
@@ -124,12 +134,12 @@ const NewBibleItemForm = props => {
           </Select>
         </FormControl>
         <TextField
-          label="Content"
+          label="Verses"
           multiline
           fullWidth
           rows="4"
-          value={content}
-          onChange={e => setContent(e.target.value)}
+          value={verses}
+          onChange={e => setVerses(e.target.value)}
           margin="normal"
           variant="outlined"
         />

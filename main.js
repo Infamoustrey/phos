@@ -2,14 +2,6 @@ const { app, BrowserWindow, Menu } = require("electron");
 
 const path = require("path");
 
-require("electron-reload")(path.join(__dirname, "app"));
-
-if (process.env.NODE_ENV === "development") {
-  require("electron-debug")({
-    showDevTools: true
-  });
-}
-
 let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({

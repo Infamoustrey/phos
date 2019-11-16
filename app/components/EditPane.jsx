@@ -1,11 +1,12 @@
 import React, { useGlobal, createElement } from "reactn";
 
-import { CONTENT } from "../constants/ItemTypes";
+import { CONTENT, BIBLE } from "../constants/ItemTypes";
 
 import { Paper, useTheme } from "@material-ui/core";
 
 import NoSelectedItem from "./NoSelectedItem";
 import ContentEditor from "./ContentEditor";
+import BibleEditor from "./BibleEditor";
 
 const EditPane = () => {
   const theme = useTheme();
@@ -15,7 +16,8 @@ const EditPane = () => {
   if (!selectedItem) return <NoSelectedItem />;
 
   const editor = {
-    [CONTENT]: ContentEditor
+    [CONTENT]: ContentEditor,
+    [BIBLE]: BibleEditor
   };
 
   return (

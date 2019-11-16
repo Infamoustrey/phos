@@ -12,10 +12,28 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <link rel="stylesheet" href="build/app.css" />
   </head>
   <body>
     <div id="app"></div>
-    <script src="build/app.js"></script>
+    <script>
+      const process = require("process");
+
+      let script = document.createElement("script");
+      script.type = "text/javascript";
+
+      let link = document.createElement("link");
+      link.rel = "stylesheet";
+
+      if (process.env.NODE_ENV == "development") {
+        script.src = "http://localhost:8080/app/build/app.js";
+        link.href = "http://localhost:8080/app/build/app.css";
+      } else {
+        script.src = "build/app.js";
+        link.href = "build/app.css";
+      }
+
+      document.body.appendChild(script);
+      document.body.appendChild(link);
+    </script>
   </body>
 </html>
