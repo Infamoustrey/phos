@@ -35,12 +35,8 @@ let actions = {
   ...TextItems.actions
 };
 
-for (let i in actions) {
-  actions[i] = (...params) =>
-    actions[i](Provider.getGlobal(), Provider.getDispatch(), ...params);
-}
-
-const useAction = name => actions[name];
+const useAction = name => (...params) =>
+  actions[name](Provider.getGlobal(), Provider.getDispatch(), ...params);
 
 // import "./Presentations";
 // import "./Sections";

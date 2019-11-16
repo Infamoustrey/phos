@@ -23,7 +23,7 @@ const SectionList = ({ section }) => {
       <Divider component="li" />
       <Collapse in={open} timeout="auto" unmountOnExit>
         {serviceItems
-          .filter(item => item.section_id === section._id)
+          .filter(item => item.section_id === section.id)
           .map((item, i) => (
             <SectionListItem key={i} item={item} />
           ))}

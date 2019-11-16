@@ -82,19 +82,16 @@ const NewBibleItemForm = props => {
       title
     );
 
-    await createBibleItem(item._id, passage, version, verses);
+    await createBibleItem(item.id, passage, version, verses);
 
     setUserInterface({ ...userInterface, editMode: true });
-    setOpen(false);
+
     onComplete();
 
     return Promise.resolve();
   };
 
-  const cancel = () => {
-    setOpen(false);
-    onComplete();
-  };
+  const cancel = onComplete;
 
   return (
     <Dialog open={open} onClose={cancel}>
