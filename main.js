@@ -3,16 +3,16 @@ const { app, BrowserWindow, Menu } = require("electron");
 const path = require("path");
 
 let mainWindow;
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true
     },
     width: 1280,
-    height: 720
+    height: 720,
+    frame: false
   });
-
-  // Menu.setApplicationMenu(null);
 
   mainWindow.loadURL(path.join("file://", __dirname, "/app/index.html"));
 

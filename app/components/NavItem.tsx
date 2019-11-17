@@ -21,14 +21,19 @@ const NavSubItem = ({ item, onActivate }) => {
   return (
     <React.Fragment>
       <ListItem
+        className="no-drag"
         onClick={() => {
           setUserInterface({ ...userInterface, modalComponent: component });
           onActivate();
         }}
         button
       >
-        {icon && <Icon style={{ marginRight: theme.spacing(2) }}>{icon}</Icon>}
-        <ListItemText primary={label} />
+        {icon && (
+          <Icon className="no-drag" style={{ marginRight: theme.spacing(2) }}>
+            {icon}
+          </Icon>
+        )}
+        <ListItemText className="no-drag" primary={label} />
       </ListItem>
     </React.Fragment>
   );
@@ -44,6 +49,7 @@ const NavItem = props => {
   return (
     <React.Fragment>
       <Button
+        className="no-drag"
         ref={buttonRef}
         onClick={() => setOpen(true)}
         variant="text"
@@ -52,6 +58,7 @@ const NavItem = props => {
         {label}
       </Button>
       <Menu
+        className="no-drag"
         anchorEl={buttonRef.current}
         open={open}
         onClose={() => setOpen(false)}

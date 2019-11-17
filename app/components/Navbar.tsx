@@ -1,8 +1,19 @@
 import React, { useState, createElement } from "reactn";
 
+declare const remote;
+
 import { useGlobal } from "../store";
 
-import { AppBar, Toolbar, FormControlLabel, Switch } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  FormControlLabel,
+  Switch,
+  IconButton
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import MinimizeIcon from "@material-ui/icons/Minimize";
+import AddIcon from "@material-ui/icons/Add";
 
 import NavItem from "./NavItem";
 import NewPresentationForm from "./NewPresentationForm";
@@ -59,26 +70,46 @@ const Navbar = props => {
 
   return (
     <React.Fragment>
-      <AppBar position="static">
+      <AppBar position="static" className="draggable">
         <Toolbar variant="dense">
           {navItems.map((item, i) => (
             <NavItem key={i} label={item.label} items={item.items} />
           ))}
+          <div style={{ flex: 1 }}></div>
           {presentation && (
-            <React.Fragment>
-              <div style={{ flex: 1 }}></div>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={presentMode}
-                    onChange={() => setPresentMode(!presentMode)}
-                    value="checkedA"
-                  />
-                }
-                label="Present Mode"
-              />
-            </React.Fragment>
+            <FormControlLabel
+              className="no-drag"
+              control={
+                <Switch
+                  checked={presentMode}
+                  onChange={() => setPresentMode(!presentMode)}
+                  value="checkedA"
+                />
+              }
+              label="Present Mode"
+            />
           )}
+          <IconButton
+            className="no-drag"
+            onClick={() => remote.BrowserWindow.getFocusedWindow().minimize()}
+          >
+            <MinimizeIcon style={{ color: "gold" }} />
+          </IconButton>
+          <IconButton
+            className="no-drag"
+            onClick={() => {
+              let window = remote.BrowserWindow.getFocusedWindow();
+              window.isMaximized() ? window.unmaximize() : window.maximize();
+            }}
+          >
+            <AddIcon style={{ color: "#00e676" }} />
+          </IconButton>
+          <IconButton
+            className="no-drag"
+            onClick={() => remote.BrowserWindow.getFocusedWindow().close()}
+          >
+            <CloseIcon style={{ color: "red" }} />
+          </IconButton>
         </Toolbar>
       </AppBar>
       {userInterface.modalComponent &&
