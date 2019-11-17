@@ -1,4 +1,4 @@
-export enum ItemTypes {
+export enum ServiceItemTypes {
   SONG = "SONG",
   BIBLE = "BIBLE",
   ANNOUNCEMENT = "ANNOUNCEMENT",

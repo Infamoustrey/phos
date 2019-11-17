@@ -6,7 +6,7 @@ import { CREATE_SECTION } from "../store/Sections";
 import { CREATE_ITEM } from "../store/ServiceItems";
 import { CREATE_TEXT_ITEM } from "../store/TextItems";
 
-import { ItemTypes } from "../enums/ItemTypes";
+import { ServiceItemTypes } from "../enums/ServiceItemTypes";
 
 import {
   Button,
@@ -43,7 +43,7 @@ const NewContentForm = props => {
     let item = await createItem(
       presentation.id,
       section.id,
-      ItemTypes.CONTENT,
+      ServiceItemTypes.CONTENT,
       title
     );
     await createTextItem(item.id, content, {});

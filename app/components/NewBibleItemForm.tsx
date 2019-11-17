@@ -6,7 +6,7 @@ import { CREATE_SECTION } from "../store/Sections";
 import { CREATE_ITEM } from "../store/ServiceItems";
 import { CREATE_BIBLE_ITEM } from "../store/BibleItems";
 
-import { ItemTypes } from "../enums/ItemTypes";
+import { ServiceItemTypes } from "../enums/ServiceItemTypes";
 import englishVersionList from "../constants/bible-versions/English";
 import { searchForVerse } from "../lib/biblegateway-api";
 
@@ -78,7 +78,7 @@ const NewBibleItemForm = props => {
     let item = await createItem(
       presentation.id,
       section.id,
-      ItemTypes.BIBLE,
+      ServiceItemTypes.BIBLE,
       title
     );
 
