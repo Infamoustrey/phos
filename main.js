@@ -1,10 +1,10 @@
-const { app, BrowserWindow, Menu } = require("electron");
+const { app, BrowserWindow } = require("electron");
 
 const path = require("path");
 
 let mainWindow;
 
-function createWindow() {
+app.on("ready", () => {
   mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true
@@ -17,18 +17,12 @@ function createWindow() {
   mainWindow.loadURL(path.join("file://", __dirname, "/app/index.html"));
 
   mainWindow.on("closed", () => (mainWindow = null));
-}
-
-app.on("ready", createWindow);
-
-app.on("window-all-closed", function() {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
 });
 
-app.on("activate", function() {
-  if (mainWindow === null) {
-    createWindow();
-  }
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") app.quit();
+});
+
+app.on("activate", () => {
+  if (mainWindow === null) createWindow();
 });
