@@ -7,6 +7,9 @@ import UserInterface from "./UserInterface";
 import SelectedItem from "./SelectedItem";
 import TextItems from "./TextItems";
 import BibleItems from "./BibleItems";
+import Screens from "./Screens";
+
+console.log(Screens.displays);
 
 const Provider = createProvider(
   {

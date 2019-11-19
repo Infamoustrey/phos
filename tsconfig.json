@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "jsx": "react",
     "module": "commonjs",
-    "moduleResolution": "node",
-    "removeComments": true,
-    "lib": ["dom", "es6", "dom.iterable", "scripthost"]
+    "jsx": "react",
+    "removeComments": true
   },
   "include": ["app/**/*.ts", "app/**/*.tsx"],
   "exclude": ["app/build/**"],

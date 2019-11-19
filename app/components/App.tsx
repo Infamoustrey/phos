@@ -12,14 +12,6 @@ import DateFnsUtils from "@date-io/date-fns";
 import Navbar from "./Navbar";
 import Content from "./Content";
 
-const {
-  remote: { screen }
-} = require("electron");
-
-let displays = screen.getAllDisplays();
-
-console.log(displays);
-
 const theme = createMuiTheme({
   palette: {
     primary: deepPurple,
