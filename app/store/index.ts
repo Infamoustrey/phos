@@ -7,9 +7,7 @@ import UserInterface from "./UserInterface";
 import SelectedItem from "./SelectedItem";
 import TextItems from "./TextItems";
 import BibleItems from "./BibleItems";
-import Screens from "./Screens";
-
-console.log(Screens.displays);
+import Displays from "./Displays";
 
 const Provider = createProvider(
   {
@@ -19,7 +17,8 @@ const Provider = createProvider(
     ...ServiceItems.state,
     ...SelectedItem.state,
     ...BibleItems.state,
-    ...TextItems.state
+    ...TextItems.state,
+    ...Displays.state
   },
   {
     ...Presentations.reducers,
@@ -27,7 +26,8 @@ const Provider = createProvider(
     ...ServiceItems.reducers,
     ...SelectedItem.reducers,
     ...BibleItems.reducers,
-    ...TextItems.reducers
+    ...TextItems.reducers,
+    ...Displays.reducers
   }
 );
 
@@ -40,12 +40,6 @@ let actions = {
 
 const useAction = name => (...params) =>
   actions[name](Provider.getGlobal(), Provider.getDispatch(), ...params);
-
-// import "./Presentations";
-// import "./Sections";
-// import "./Items";
-// import "./SelectedItem";
-// import "./UserInterface";
 
 const { useDispatch, useGlobal } = Provider;
 

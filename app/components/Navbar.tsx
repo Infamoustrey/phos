@@ -15,12 +15,14 @@ import CloseIcon from "@material-ui/icons/Close";
 import MinimizeIcon from "@material-ui/icons/Minimize";
 import AddIcon from "@material-ui/icons/Add";
 
+import { NavListItem } from "../interfaces/NavItem";
 import NavItem from "./NavItem";
+
 import NewPresentationForm from "./NewPresentationForm";
 import NewSectionForm from "./NewSectionForm";
 import NewContentItem from "./NewContentItem";
 import NewBibleItemForm from "./NewBibleItemForm";
-import { NavListItem } from "../interfaces/NavItem";
+import Preferences from "./Preferences";
 
 const Navbar = props => {
   const [presentation] = useGlobal("presentation");
@@ -31,10 +33,11 @@ const Navbar = props => {
   let navItems: NavListItem[] = [
     {
       label: "File",
-      items: [
-        { label: "New", component: NewPresentationForm }
-        // { label: "Open" }
-      ]
+      items: [{ label: "New", component: NewPresentationForm }]
+    },
+    {
+      label: "Edit",
+      items: [{ label: "Preferences", component: Preferences }]
     }
   ];
   if (presentation && presentation.id) {
