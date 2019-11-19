@@ -11,15 +11,17 @@ let externalDisplay = displays.find(
 let win;
 
 if (externalDisplay) {
-  (win = new BrowserWindow({
+  win = new BrowserWindow({
     x: externalDisplay.bounds.x,
     y: externalDisplay.bounds.y,
     width: externalDisplay.bounds.width,
     height: externalDisplay.bounds.height,
     frame: false,
     fullscreen: true
-  })),
-    win.loadURL("https://github.com");
+  });
+
+  win.loadURL("https://github.com");
+
   win.focus();
 }
 
