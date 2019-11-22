@@ -50,14 +50,18 @@ const ImageSelector = props => {
         </AppBar>
         <Grid container>
           <Grid item xs={12} style={{ padding: "1rem" }}>
-            <GridList cellHeight={200}>
-              {images.length > 0 &&
-                images.map((source, i) => (
-                  <GridListTile key={i}>
-                    <img src={source} />
+            {images.length > 0 && (
+              <GridList cellHeight={images[0].webformatHeight} cols={3}>
+                {images.map((image, i) => (
+                  <GridListTile key={i} cols={1}>
+                    <img
+                      style={{ width: image.webformatWidth }}
+                      src={image.webformatURL}
+                    />
                   </GridListTile>
                 ))}
-            </GridList>
+              </GridList>
+            )}
           </Grid>
         </Grid>
       </Dialog>

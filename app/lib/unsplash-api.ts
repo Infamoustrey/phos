@@ -1,18 +1,21 @@
 import axios from "axios";
 
 const getUnsplashImages = async () => {
-  let response = await axios.get("https://unsplash.com/s/photos/churches");
+  let q = "church";
+  let key = ""; // unsplash api key
 
-  let parser = new DOMParser();
+  let response = await axios.get("https://pixabay.com/api", {
+    params: {
+      q,
+      key,
+      image_type: "photo",
+      orientation: "horizontal",
+      per_page: 100
+    }
+  });
 
-  let document = parser.parseFromString(response.data, "text/html");
+  let images = response.data.hits;
 
-  let images = [].slice
-    .call(document.querySelectorAll("figure img"))
-    .map(img => img.src)
-    .filter(source => source.length > 0 && !source.includes("profile"));
-
-  console.log(images);
   return Promise.resolve(images);
 };
 

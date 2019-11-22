@@ -8,7 +8,7 @@ import { Card, CardActionArea, CardMedia } from "@material-ui/core";
 import ContentSlide from "./ContentSlide";
 
 const CurrentSlidePreview = props => {
-  const [selectedItem, setSelectedItem] = useGlobal("selectedItem");
+  const [selectedItem] = useGlobal("selectedItem");
 
   if (!selectedItem) return null;
 
