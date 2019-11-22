@@ -14,7 +14,7 @@ import {
 
 import CloseIcon from "@material-ui/icons/Close";
 
-import { getUnsplashImages } from "../lib/unsplash-api";
+import { getPixabayImages } from "../lib/pixabay-api";
 
 let images = [];
 

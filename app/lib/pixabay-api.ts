@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getUnsplashImages = async () => {
+const getPixabayImages = async () => {
   let q = "church";
   let key = ""; // unsplash api key
 
@@ -19,4 +19,4 @@ const getUnsplashImages = async () => {
   return Promise.resolve(images);
 };
 
-export { getUnsplashImages };
+export { getPixabayImages };
