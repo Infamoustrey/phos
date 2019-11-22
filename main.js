@@ -12,7 +12,8 @@ app.on("ready", () => {
     minWidth: 1280,
     width: 1280,
     minHeight: 720,
-    height: 720
+    height: 720,
+    icon: path.join(__dirname, "misc/img/app-icon.png")
   });
 
   // Menu.setApplicationMenu(null);
