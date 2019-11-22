@@ -6,6 +6,7 @@ import {
   CardActionArea,
   CardMedia
 } from "@material-ui/core";
+import CurrentSlidePreview from "./CurrentSlidePreview";
 
 const PreviewSlide = props => {
   return (
@@ -14,14 +15,7 @@ const PreviewSlide = props => {
         <Typography variant="h5" style={{ textAlign: "center" }}>
           Current Slide
         </Typography>
-        <Card style={{ width: "100%" }}>
-          <CardActionArea>
-            <CardMedia
-              style={{ height: 160 }}
-              image="https://picsum.photos/400/400.jpg"
-            ></CardMedia>
-          </CardActionArea>
-        </Card>
+        <CurrentSlidePreview />
 
         <Typography
           variant="h5"

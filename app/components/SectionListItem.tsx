@@ -31,7 +31,7 @@ const SectionListItem = ({ item }) => {
             height: theme.spacing(4),
             marginRight: theme.spacing(2)
           }}
-          src="https://images.unsplash.com/photo-1507692049790-de58290a4334?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+          src="storage/stock/jesus.jpg"
         />
       </ListItemAvatar>
       <ListItemText primary={item.title} />

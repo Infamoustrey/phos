@@ -11,7 +11,7 @@ import {
 const SlideCardList = props => {
   const items = new Array(15).fill(0).map(() => {
     return {
-      img: "storage/img/jesus.jpg",
+      img: "storage/stock/jesus.jpg",
       title: "Image",
       author: "author"
     };

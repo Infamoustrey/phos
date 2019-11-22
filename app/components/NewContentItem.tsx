@@ -16,8 +16,9 @@ import {
   DialogContent,
   DialogActions
 } from "@material-ui/core";
+import ImageSelector from "./ImageSelector";
 
-const NewContentForm = props => {
+const NewContentItem = props => {
   const { onComplete } = props;
 
   const createSection = useAction(CREATE_SECTION);
@@ -79,6 +80,7 @@ const NewContentForm = props => {
           margin="normal"
           variant="outlined"
         />
+        <ImageSelector />
       </DialogContent>
       <DialogActions>
         <Button color="secondary" onClick={cancel}>
@@ -92,4 +94,4 @@ const NewContentForm = props => {
   );
 };
 
-export default NewContentForm;
+export default NewContentItem;

@@ -23,8 +23,9 @@ const ContentEditor = () => {
         {textItems &&
           textItems
             .filter(textItem => textItem.service_item_id === selectedItem.id)
-            .map(textItem => (
+            .map((textItem, i) => (
               <TextField
+                key={i}
                 style={{ marginTop: theme.spacing(2) }}
                 fullWidth
                 multiline

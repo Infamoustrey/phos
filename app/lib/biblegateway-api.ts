@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 const searchForVerse = async (search, version) => {
   try {
@@ -13,7 +13,7 @@ const searchForVerse = async (search, version) => {
 
     let doc = parser.parseFromString(result.data, "text/html");
 
-    const verse = doc.querySelector(".bcv").innerText;
+    const verse = doc.querySelector(".bcv").textContent;
 
     let elements = [].slice.call(doc.querySelectorAll(".text"));
 
