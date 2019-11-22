@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Menu } = require("electron");
 
 const path = require("path");
 
@@ -12,9 +12,10 @@ app.on("ready", () => {
     minWidth: 1280,
     width: 1280,
     minHeight: 720,
-    height: 720,
-    frame: false
+    height: 720
   });
+
+  // Menu.setApplicationMenu(null);
 
   mainWindow.loadURL(path.join("file://", __dirname, "/app/index.html"));
 

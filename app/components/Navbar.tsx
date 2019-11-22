@@ -1,19 +1,8 @@
 import React, { useState, createElement } from "reactn";
 
-declare const remote;
-
 import { useGlobal } from "../store";
 
-import {
-  AppBar,
-  Toolbar,
-  FormControlLabel,
-  Switch,
-  IconButton
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import MinimizeIcon from "@material-ui/icons/Minimize";
-import AddIcon from "@material-ui/icons/Add";
+import { AppBar, Toolbar, FormControlLabel, Switch } from "@material-ui/core";
 
 import { NavListItem } from "../interfaces/NavItem";
 import NavItem from "./NavItem";
@@ -92,27 +81,6 @@ const Navbar = props => {
               label="Present Mode"
             />
           )}
-          <IconButton
-            className="no-drag"
-            onClick={() => remote.BrowserWindow.getFocusedWindow().minimize()}
-          >
-            <MinimizeIcon style={{ color: "gold" }} />
-          </IconButton>
-          <IconButton
-            className="no-drag"
-            onClick={() => {
-              let window = remote.BrowserWindow.getFocusedWindow();
-              window.isMaximized() ? window.unmaximize() : window.maximize();
-            }}
-          >
-            <AddIcon style={{ color: "#00e676" }} />
-          </IconButton>
-          <IconButton
-            className="no-drag"
-            onClick={() => remote.BrowserWindow.getFocusedWindow().close()}
-          >
-            <CloseIcon style={{ color: "red" }} />
-          </IconButton>
         </Toolbar>
       </AppBar>
       {userInterface.modalComponent &&
