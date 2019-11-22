@@ -18,7 +18,7 @@ import { getPixabayImages } from "../lib/pixabay-api";
 
 let images = [];
 
-getUnsplashImages().then(results => (images = results));
+getPixabayImages().then(results => (images = results));
 
 const ImageSelector = props => {
   const [open, setOpen] = useState(false);
