@@ -1,4 +1,4 @@
-import * as uuid from "uuid/v1";
+import uuid from "uuid/v1";
 
 const CREATE_PRESENTATION = "CREATE_PRESENTATION";
 const ADD_PRESENTATION = "ADD_PRESENTATION";

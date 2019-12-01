@@ -1,6 +1,6 @@
 import { addReducer, setGlobal, getDispatch } from "reactn";
 
-import * as uuid from "uuid/v1";
+import uuid from "uuid/v1";
 
 const ADD_BIBLE_ITEM = "ADD_BIBLE_ITEM";
 const SET_BIBLE_ITEM = "SET_BIBLE_ITEM";

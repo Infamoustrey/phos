@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 
 import { KeyboardDatePicker } from "@material-ui/pickers";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
 
 const NewPresentationForm = ({ onComplete }) => {

@@ -3,7 +3,8 @@
     "target": "es6",
     "module": "commonjs",
     "jsx": "react",
-    "removeComments": true
+    "removeComments": true,
+    "esModuleInterop": true
   },
   "include": ["app/**/*.ts", "app/**/*.tsx"],
   "exclude": ["app/build/**"],
