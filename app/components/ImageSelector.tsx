@@ -16,11 +16,13 @@ import CloseIcon from "@material-ui/icons/Close";
 
 import { getPixabayImages } from "../lib/pixabay-api";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 let images = [];
 
-getPixabayImages().then(results => (images = results));
+getPixabayImages().then(result => (images = result));
 
-const ImageSelector = props => {
+const ImageSelector = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -51,13 +53,10 @@ const ImageSelector = props => {
         <Grid container>
           <Grid item xs={12} style={{ padding: "1rem" }}>
             {images.length > 0 && (
-              <GridList cellHeight={images[0].webformatHeight} cols={3}>
+              <GridList cellHeight={200} cols={3}>
                 {images.map((image, i) => (
                   <GridListTile key={i} cols={1}>
-                    <img
-                      style={{ width: image.webformatWidth }}
-                      src={image.webformatURL}
-                    />
+                    <LazyLoadImage height={200} width="100%" src={image} />
                   </GridListTile>
                 ))}
               </GridList>

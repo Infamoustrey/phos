@@ -1,6 +1,6 @@
 import { SET_ITEM } from "./SelectedItem";
 
-import * as uuid from "uuid/v1";
+import uuid from "uuid/v1";
 
 const ADD_ITEM = "ADD_ITEM";
 const CREATE_ITEM = "CREATE_ITEM";

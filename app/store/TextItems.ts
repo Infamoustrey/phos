@@ -1,4 +1,4 @@
-import * as uuid from "uuid/v1";
+import uuid from "uuid/v1";
 import { TextItem } from "../interfaces/TextItem";
 
 const ADD_TEXT_ITEM = "ADD_TEXT_ITEM";
