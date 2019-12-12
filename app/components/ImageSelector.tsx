@@ -22,7 +22,7 @@ let images = [];
 
 getPixabayImages().then(result => (images = result));
 
-const ImageSelector = () => {
+const ImageSelector = ({ onImageSelect }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -55,7 +55,11 @@ const ImageSelector = () => {
             {images.length > 0 && (
               <GridList cellHeight={200} cols={3}>
                 {images.map((image, i) => (
-                  <GridListTile key={i} cols={1}>
+                  <GridListTile
+                    key={i}
+                    cols={1}
+                    onClick={() => onImageSelect(image)}
+                  >
                     <LazyLoadImage height={200} width="100%" src={image} />
                   </GridListTile>
                 ))}

@@ -14,8 +14,14 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions
+  DialogActions,
+  IconButton,
+  Card,
+  CardActionArea,
+  CardMedia
 } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+
 import ImageSelector from "./ImageSelector";
 
 const NewContentItem = props => {
@@ -30,8 +36,10 @@ const NewContentItem = props => {
   const [userInterface, setUserInterface] = useGlobal("userInterface");
 
   const [open, setOpen] = useState(true);
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState();
+  const [backgroundImage, setBackgroundImage] = useState("");
 
   let section = sections.find(
     section => section.presentation_id == presentation.id
@@ -76,11 +84,36 @@ const NewContentItem = props => {
           fullWidth
           rows="4"
           value={content}
+          style={{ marginBottom: "1rem" }}
           onChange={e => setContent(e.target.value)}
           margin="normal"
           variant="outlined"
         />
-        <ImageSelector />
+        {backgroundImage ? (
+          <Card>
+            <CardActionArea>
+              <CardMedia
+                image={backgroundImage}
+                style={{ height: "250px" }}
+              ></CardMedia>
+              <IconButton
+                onClick={() => setBackgroundImage("")}
+                style={{
+                  position: "absolute",
+                  top: "1rem",
+                  right: "1rem",
+                  color: "red"
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </CardActionArea>
+          </Card>
+        ) : (
+          <ImageSelector
+            onImageSelect={imageSrc => setBackgroundImage(imageSrc)}
+          />
+        )}
       </DialogContent>
       <DialogActions>
         <Button color="secondary" onClick={cancel}>
