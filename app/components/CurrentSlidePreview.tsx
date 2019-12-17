@@ -21,7 +21,7 @@ const CurrentSlidePreview = props => {
           <CardActionArea>
             <CardMedia
               style={{ height: 160 }}
-              image="https://picsum.photos/400/400.jpg"
+              image={selectedItem.background_image_url}
             ></CardMedia>
           </CardActionArea>
         </Card>

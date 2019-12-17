@@ -6,5 +6,5 @@ export interface ServiceItem {
   section_id: string;
   type: ServiceItemTypes;
   title: string;
-  background_image_id: string;
+  background_image_url: string;
 }

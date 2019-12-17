@@ -53,7 +53,8 @@ const NewContentItem = props => {
       presentation.id,
       section.id,
       ServiceItemTypes.CONTENT,
-      title
+      title,
+      backgroundImage
     );
     await createTextItem(item.id, content, {});
     setUserInterface({ ...userInterface, editMode: true });
