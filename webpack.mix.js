@@ -5,5 +5,6 @@ mix
   .ts("app/presenter.tsx", "app/build")
   .sass("app/styles/app.scss", "app/build")
   .webpackConfig({
-    target: "electron-renderer"
+    target: "electron-renderer",
+    devServer: { port: 9000 }
   });

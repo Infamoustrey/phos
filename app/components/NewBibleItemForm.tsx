@@ -8,7 +8,8 @@ import { CREATE_BIBLE_ITEM } from "../store/BibleItems";
 
 import { ServiceItemTypes } from "../enums/ServiceItemTypes";
 import englishVersionList from "../constants/bible-versions/English";
-import { searchForVerse } from "../lib/biblegateway-api";
+
+import BibleGateWayAPI from "bible-gateway-api";
 
 import {
   Button,
@@ -47,18 +48,22 @@ const NewBibleItemForm = props => {
   const queryVerse = async () => {
     setErrorMessage(null);
     if (!version || !passage) return Promise.resolve();
-    let response;
+
     try {
-      response = await searchForVerse(passage, version);
+      let bgw = new BibleGateWayAPI();
+
+      const { verse, content } = await bgw.search(passage, version);
+
+      setPassage(verse);
+      setVerses(content.join("\n\n"));
     } catch (e) {
+      console.log(e);
       setErrorMessage(
         "Could not find verse, try this format {book} {chapter}:{verses ex: 1, 1-2}"
       );
       return Promise.resolve();
     }
 
-    setPassage(response.verse);
-    setVerses(response.content.join("\n\n"));
     return Promise.resolve();
   };
 
