@@ -1,7 +1,10 @@
 const path = require('path');
 
+const dist = path.resolve(__dirname, '..', 'dist');
+
 module.exports = {
-    entry: './frontend/main.ts',
+    entry: './src/backend/main.ts',
+    target: 'electron-main',
     module: {
         rules: [
             {
@@ -12,10 +15,10 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.ts', '.js'],
     },
     output: {
-        filename: 'frontend.js',
-        path: path.resolve(__dirname, 'dist'),
+        filename: 'backend.js',
+        path: dist,
     },
 };
