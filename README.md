@@ -1,5 +1,5 @@
 <p align="center">
-    <img height="120" src="misc/img/logo-banner.png"> 
+    <img height="120" src="misc/img/app-icon.png"> 
 </p>
 
 <p align="center">Church Service Presentation Software. Free, as it should be.</p>
