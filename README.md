@@ -34,17 +34,17 @@ Before you contribute please take some time to read the [Contribution Guide](CON
 Clone or fork the repo to get started. Once you've got the source code downloaded you'll want
 to install the dependencies.
 
-#### `yarn`
+#### `npm install`
 
 > Installs the required packages & dependencies for the project
 
-#### `yarn hot`
+#### `npm run frontend`
 
 > Starts a webpack dev server for HMR
 
-#### `yarn electron`
+#### `npm run backend`
 
-> Starts the electron `main.js` process
+> Starts the electron `main` process
 
 ## License
 
