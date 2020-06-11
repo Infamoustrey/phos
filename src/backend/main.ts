@@ -16,6 +16,8 @@ const createWindow = () => {
         icon: join(__dirname, 'misc/img/app-icon.png'),
     });
 
+    mainWindow.setMenu(null);
+
     if (process.env.NODE_ENV === 'development') {
         mainWindow.loadURL('http://localhost:9000');
         mainWindow.webContents.openDevTools({ mode: 'undocked' });

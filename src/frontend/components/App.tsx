@@ -7,6 +7,8 @@ import green from '@material-ui/core/colors/green';
 
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DayJsUtils from '@date-io/dayjs';
+import { Navbar } from './Navbar';
+import { Grid } from '@material-ui/core';
 
 const theme = createMuiTheme({
     palette: {
@@ -19,7 +21,12 @@ const App = () => {
     return (
         <ThemeProvider theme={theme}>
             <MuiPickersUtilsProvider utils={DayJsUtils}>
-                <h1>Hi there</h1>
+                <Grid container direction="column" style={{ height: '100%' }}>
+                    <Grid item>
+                        <Navbar />
+                    </Grid>
+                    <Grid item style={{ flexGrow: 1 }}></Grid>
+                </Grid>
             </MuiPickersUtilsProvider>
         </ThemeProvider>
     );
