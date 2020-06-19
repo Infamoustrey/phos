@@ -5,3 +5,4 @@ dist
 *.bak
 *.log
 hot
+.idea
