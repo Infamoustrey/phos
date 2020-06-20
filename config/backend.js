@@ -9,8 +9,11 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                loader: 'ts-loader',
                 exclude: /node_modules/,
+                options: {
+                    configFile: path.resolve(__dirname, '..', 'src', 'backend', 'tsconfig.json')
+                }
             },
         ],
     },

@@ -2,7 +2,7 @@ import React, {createElement, FunctionComponent, MouseEvent, useState} from "rea
 
 import {Button, Menu, List, ListItem, ListItemText, ListItemIcon} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
-import {NavigationItem} from "./types";
+import {AsyncFunction, NavigationItem} from "./types";
 
 const useStyles = makeStyles({
     button: {
@@ -25,8 +25,9 @@ export const NavItem: FunctionComponent<NavItemProps> = ({item}: NavItemProps) =
 
     const handleClose = (): void => setAnchorEl(null);
 
-    const handleAction = (action: Function) => {
-        action()
+    const handleAction = async (action: AsyncFunction): Promise<void> => {
+        await action();
+        handleClose();
     }
 
     return (
@@ -41,7 +42,7 @@ export const NavItem: FunctionComponent<NavItemProps> = ({item}: NavItemProps) =
                         {item.children.map(child =>
                             <ListItem key={child.text} button>
                                 <ListItemText primary={child.text} onClick={() => {
-                                    if (child.action !== undefined) handleAction(child.action);
+                                    if (child.action !== undefined) return handleAction(child.action);
                                 }}/>
                                 {child.icon !== undefined &&
                                 <ListItemIcon>{createElement(child.icon, {})}</ListItemIcon>}

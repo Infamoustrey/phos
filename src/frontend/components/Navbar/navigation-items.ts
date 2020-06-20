@@ -2,12 +2,18 @@ import RightArrowIcon from "@material-ui/icons/ArrowRight";
 import Info from "@material-ui/icons/Info";
 import {NavigationItem} from "./types";
 
+import {presentations} from "store/presentations";
+
 export const NavigationItems: NavigationItem[] = [
     {
         text: 'File',
         children: [
             {
                 text: 'New',
+                action: async (): Promise<boolean> => {
+                    await presentations.createPresentation('Unamed Presentation')
+                    return Promise.resolve(true);
+                }
             },
             {text: 'Open'},
             {text: 'Open Recent', icon: RightArrowIcon},

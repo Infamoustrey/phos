@@ -3,14 +3,15 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const dist = path.resolve(__dirname, '..', 'dist');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const devServer =
     process.env.NODE_ENV === 'development'
         ? {
-              contentBase: dist,
-              compress: true,
-              port: 9000,
-          }
+            contentBase: dist,
+            compress: true,
+            port: 9000,
+        }
         : null;
 
 module.exports = {
@@ -21,13 +22,16 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                loader: 'ts-loader',
                 exclude: /node_modules/,
             },
         ],
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        plugins: [new TsconfigPathsPlugin({
+            configFile: path.resolve(__dirname, '..', 'src', 'frontend', 'tsconfig.json'),
+        })]
     },
     plugins: [
         new HTMLWebpackPlugin({
@@ -35,6 +39,7 @@ module.exports = {
             filename: 'index.html',
             template: './src/frontend/index.html',
         }),
+
     ],
     output: {
         filename: 'frontend.js',
